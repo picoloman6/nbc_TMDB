@@ -134,3 +134,82 @@ $searchBtn.addEventListener('click', async (e) => {
     console.log(e);
   }
 });
+
+
+
+// 카드 정렬
+
+document.addEventListener('DOMContentLoaded', async () => {
+  $searchInput.focus();
+
+  try {
+    const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1`;
+    const res = await fetch(url, options).then((response) => response.json());
+    const data = res.results;
+    // console.log(data);
+
+    // 방법 1. vote_count, vote_average 값을 forEach로 빼서 각각 정렬 후, 카드 렌더링
+    // -> forEach로 뺀 값을 배열로 만들어서 sort() 하는게 맞나? 비효율적
+
+    // 추첨순 점수
+    // const sort1 = data.forEach((a) => {
+    //   console.log(a.vote_count);
+    // });
+
+    // 별점순 점수
+    // const sort2 = data.forEach((b) => {
+      // console.log(b.vote_average);
+    // });
+
+    // sort 버튼 클릭이벤트 부여
+    // const sort3 = document.getElementsByClassName('sortBtn-count')
+    //   .addEventListener('click', sort1.sort((next, prev) => prev > next ? -1 : 0));
+    // console.log(sort3);
+
+    // 카드 렌더링
+    // data.forEach((movie) => {
+    //   const card = createMovieCard(movie);
+    //   $movieCardList.appendChild(card);
+    // });
+
+
+
+    // 방법 2. forEach 하지 말고, 원 객체에서 value값을 sorting 하기 (객체에서 정렬하기)
+
+    // const sort_cards = data.forEach((a) => {
+      // console.log(data);
+      // console.log(a);
+    // });
+
+    // 평점순으로 내림차순 정렬 - 되다 말았음
+    const sort_average = data.sort((a,b) => Number(b.vote_average) - Number(a.vote_average));
+    console.log(sort_average);
+
+    // 추천순으로 내림차순 정렬 - perfect!
+    const sort_count = data.sort((a,b) => b.vote_count - a.vote_count);
+    console.log(sort_count);
+
+    // 평점순 버튼에 클릭이벤트 - 함수 : 기존 카드는 지우고, 새로운 정렬 카드로 붙이기 ?
+    // document.getElementsByClassName("sortBtn-average")[0].addEventListener('click', () => {
+      // console.log('print!');
+
+      // document.getElementById("movieCardList").style.display = "none";
+      
+      // data.forEach((movie) => {
+      //   const card = createMovieCard(movie);
+      //   $movieCardList.appendChild(card);
+      // });
+    // })
+
+    // 카드 렌더링
+    // data.forEach((movie) => {
+    //   const card = createMovieCard(movie);
+    //   $movieCardList.appendChild(card);
+    // });
+
+
+
+  } catch (e) {
+    console.log(e);
+  }
+});
