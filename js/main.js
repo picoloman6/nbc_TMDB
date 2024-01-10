@@ -1,6 +1,7 @@
 // DOM 요소
 const $searchInput = document.querySelector('.search-input');
 const $searchBtn = document.querySelector('.search-btn');
+const $movieCardList = document.querySelector('#movieCardList');
 
 // 변수
 const options = {
@@ -85,19 +86,16 @@ const createMovieCard = (movie) => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const movieCardList = document.getElementById('movieCardList');
   $searchInput.focus();
 
-  const url =
-    'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1';
-
   try {
+    const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1`;
     const res = await fetch(url, options).then((response) => response.json());
     const data = res.results;
 
     data.forEach((movie) => {
       const card = createMovieCard(movie);
-      movieCardList.appendChild(card);
+      $movieCardList.appendChild(card);
     });
   } catch (e) {
     console.log(e);
@@ -116,7 +114,6 @@ $searchBtn.addEventListener('click', async (e) => {
   }
 
   try {
-    const movieCardList = document.getElementById('movieCardList');
     const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
     const res = await fetch(url, options).then((response) => response.json());
     const data = res.results;
@@ -124,13 +121,13 @@ $searchBtn.addEventListener('click', async (e) => {
     if (data.length === 0) {
       alert('검색 결과가 없습니다.');
     } else {
-      while (movieCardList.firstChild) {
-        movieCardList.removeChild(movieCardList.firstChild);
+      while ($movieCardList.firstChild) {
+        $movieCardList.removeChild($movieCardList.firstChild);
       }
 
       data.forEach((movie) => {
         const card = createMovieCard(movie);
-        movieCardList.appendChild(card);
+        $movieCardList.appendChild(card);
       });
     }
   } catch (e) {
