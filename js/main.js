@@ -62,3 +62,27 @@ const filterMovies = () => {
     }
   });
 };
+
+// localStorage에 key = id로 영화 댓글 정보 저장
+const setStorageItem = (id, name, password) => {
+  let data = [];
+  const exData = localStorage.getItem(id);
+
+  if (exData) {
+    data = JSON.parse(exData);
+  }
+
+  data.push({ name, password });
+  localStorage.setItem(id, JSON.stringify(data));
+};
+
+// localStorage에서 key = id로 댓글 정보 불러오기
+const getStorageItem = (id) => {
+  const data = JSON.parse(localStorage.getItem(id));
+  console.log(data);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  getStorageItem(278);
+  getStorageItem(238);
+});
