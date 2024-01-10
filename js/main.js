@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data.results.forEach((movie) => {
         const card = createMovieCard(movie);
         movieCardList.appendChild(card);
+        console.log(movie);
       });
     });
 

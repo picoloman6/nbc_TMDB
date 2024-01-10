@@ -39,8 +39,6 @@
   margin-top: 20px;
 }
 
-
-
 footer{
   height: 140px;
   width: 100%;
@@ -59,3 +57,19 @@ footer{
   margin: 60px 0 0 0;
   padding: 60px;
 }
+
+/* 추천순, 평점순 버튼 */
+.sort {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.sort button {
+  margin-left: 10px;
+  background-color: gray;
+  color: white;
+}
+
+
+
+
