@@ -29,18 +29,45 @@ const removeComment = (movieId, commentId) => {
 
 // 영화 정보 카드 DOM 생성
 const createMovieCard = (movie) => {
-  const card = document.createElement('div');
-  card.classList.add('col-md-3', 'mb-4');
-  card.innerHTML = `
-    <div class="card" onclick="showMovieId(${movie.id})">
-        <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" class="card-img-top" alt="${movie.title}">
-            <div class="card-body">
-                <h5 class="card-title">${movie.title}</h5>
-                <p class="card-text">${movie.overview}</p>
-                <p class="card-text2">Vote Average: ${movie.vote_average}</p>
-            </div>
-    </div>`;
-  return card;
+  const { id, poster_path, title, overview, vote_average } = movie;
+
+  const $wrapper = document.createElement('div');
+  const $card = document.createElement('div');
+  const $img = document.createElement('img');
+  const $body = document.createElement('div');
+  const $title = document.createElement('h5');
+  const $overview = document.createElement('p');
+  const $average = document.createElement('p');
+
+  $wrapper.classList.add('col-md-3', 'mb-4');
+  $card.className = 'card';
+  $img.className = 'card-img-top';
+  $body.className = 'card-body';
+  $title.className = 'card-title';
+  $overview.className = 'card-text';
+  $average.className = 'card-text2';
+
+  $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  $img.alt = title;
+
+  $wrapper.onclick = function () {
+    console.log(getComments(id));
+  };
+
+  $title.textContent = title;
+  $overview.textContent = overview;
+  $average.textContent = `Vote Average: ${vote_average}`;
+
+  $body.appendChild($title);
+  $body.appendChild($overview);
+  $body.appendChild($average);
+
+  $card.appendChild($img);
+  $card.appendChild($body);
+
+  $wrapper.appendChild($card);
+
+  return $wrapper;
 };
 
 // 영화 이름 검색
@@ -85,8 +112,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     const card = createMovieCard(movie);
     movieCardList.appendChild(card);
   });
-
-  window.showMovieId = function (movieId) {
-    console.log(getComments(movieId));
-  };
 });
