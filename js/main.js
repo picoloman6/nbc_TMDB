@@ -15,9 +15,9 @@ const options = {
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (movieId, name, password) => {
-  const exData = localStorage.getItem(movieId);
   let data = [];
   let id = 1;
+  const exData = localStorage.getItem(movieId);
 
   if (exData) {
     data = JSON.parse(exData);
