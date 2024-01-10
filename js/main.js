@@ -1,3 +1,32 @@
+// localStorage에 movieId로 영화 댓글 정보 저장
+const setComment = (movieId, name, password) => {
+  const exData = localStorage.getItem(movieId);
+  let id = 1;
+  let data = [];
+
+  if (exData) {
+    data = JSON.parse(exData);
+    id = data[data.length - 1].id + 1;
+  }
+
+  data.push({ id, name, password });
+  localStorage.setItem(movieId, JSON.stringify(data));
+};
+
+// localStorage에서 movieId로 댓글 정보 불러오기
+const getComments = (movieId) => {
+  const data = JSON.parse(localStorage.getItem(movieId));
+  return data;
+};
+
+// localStorage에서 commentId로 댓글 삭제
+const removeComment = (movieId, commentId) => {
+  const data = JSON.parse(localStorage.getItem(movieId));
+  const idx = data.findIndex((v) => v.id === commentId);
+  data.splice(idx, 1);
+  localStorage.setItem(movieId, JSON.stringify(data));
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const movieCardList = document.getElementById('movieCardList');
   const movieSearchInput = document.querySelector('.form-control');
@@ -41,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.showMovieId = function (movieId) {
-    alert(`영화 ID값: ${movieId}`);
+    console.log(getComments(movieId));
   };
 });
 
@@ -62,27 +91,3 @@ const filterMovies = () => {
     }
   });
 };
-
-// localStorage에 key = id로 영화 댓글 정보 저장
-const setStorageItem = (id, name, password) => {
-  let data = [];
-  const exData = localStorage.getItem(id);
-
-  if (exData) {
-    data = JSON.parse(exData);
-  }
-
-  data.push({ name, password });
-  localStorage.setItem(id, JSON.stringify(data));
-};
-
-// localStorage에서 key = id로 댓글 정보 불러오기
-const getStorageItem = (id) => {
-  const data = JSON.parse(localStorage.getItem(id));
-  console.log(data);
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  getStorageItem(278);
-  getStorageItem(238);
-});
