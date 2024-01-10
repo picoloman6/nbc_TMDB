@@ -105,11 +105,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  const res = await fetch(url, options).then((response) => response.json());
-  const data = res.results;
+  try {
+    const res = await fetch(url, options).then((response) => response.json());
+    const data = res.results;
 
-  data.forEach((movie) => {
-    const card = createMovieCard(movie);
-    movieCardList.appendChild(card);
-  });
+    data.forEach((movie) => {
+      const card = createMovieCard(movie);
+      movieCardList.appendChild(card);
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
