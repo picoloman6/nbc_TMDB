@@ -45,7 +45,7 @@ const removeComment = (movieId, commentId) => {
 const createMovieCard = (movie) => {
   const { id, poster_path, title, overview, vote_average } = movie;
 
-  const $wrapper = document.createElement('div');
+  const $wrapper = document.createElement('li');
   const $card = document.createElement('div');
   const $img = document.createElement('img');
   const $body = document.createElement('div');
@@ -86,8 +86,7 @@ const createMovieCard = (movie) => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   const movieCardList = document.getElementById('movieCardList');
-  const movieSearchInput = document.querySelector('.search-input');
-  movieSearchInput.focus();
+  $searchInput.focus();
 
   const url =
     'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1';
