@@ -1,5 +1,5 @@
 .headerName {
-  font-size: 60px;
+  font-size: 40px;
 }
 
 .search-input {
@@ -46,4 +46,36 @@
 
 .search-form {
   display: inline;
+}
+
+footer{
+  height: 140px;
+  width: 100%;
+  background-color: #212925;
+}
+
+.footer-line{
+  /* border-top: 4px solid #000; */
+  margin-top: 30px;
+}
+
+.footer-text {
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  margin: 60px 0 0 0;
+  padding: 60px;
+}
+
+/* 추천순, 평점순 버튼 */
+.sort {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.sort button {
+  margin-left: 10px;
+  background-color: gray;
+  color: white;
 }
