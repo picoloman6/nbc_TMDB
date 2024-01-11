@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 document
     .querySelector('.sortBtn-count')
     .addEventListener('click', () => {
+      console.log('test');
         data.sort((a, b) => b.vote_count - a.vote_count);
 
         while ($movieCardList.firstChild) {

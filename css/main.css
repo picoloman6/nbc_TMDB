@@ -94,3 +94,15 @@ button.search-btn {
   background-color: gray;
   color: white;
 }
+
+/* 정렬 selector */
+.form-select {
+  width: 100px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.sort-select {
+  display: flex;
+  justify-content: flex-end;
+}
