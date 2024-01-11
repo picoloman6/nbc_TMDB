@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   makeMoiveDetail(movie);
 });
 
+// 댓글 입력 기능
 document.querySelector('.commentBtn').addEventListener('click', (e) => {
   const name = $commentName.value;
   const pw = $commentPw.value;
