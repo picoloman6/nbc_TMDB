@@ -38,13 +38,13 @@
   margin-top: 20px;
 }
 /* footer 수정부분 */
-footer{
+footer {
   height: 140px;
   width: 100%;
   background-color: black;
 }
 
-.footer-line{
+.footer-line {
   /* border-top: 4px solid #000;
   margin-top: 30px; */
 }
@@ -63,7 +63,7 @@ header {
   background-color: black;
   display: flex;
   justify-content: center;
-  padding: 3rem!important;
+  padding: 3rem !important;
 }
 
 h1.headerName {
@@ -71,7 +71,7 @@ h1.headerName {
 }
 
 form {
-  margin-top: 50px; 
+  margin-top: 50px;
 }
 
 /* header 버튼 */
