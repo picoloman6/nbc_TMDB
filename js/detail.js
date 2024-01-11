@@ -2,6 +2,7 @@
 const $commentName = document.querySelector('.comment-name');
 const $commentPw = document.querySelector('.comment-pw');
 const $commentBox = document.querySelector('.commentBox');
+const $commentBoxBtn = document.querySelector('.commentBtn');
 const $commentContainer = document.querySelector('.commentContainer');
 
 // 변수
@@ -35,7 +36,7 @@ const setComment = (name, password, comment) => {
 
 // localStorage에서 movieId로 댓글 정보 불러오기
 const getComments = () => {
-  return JSON.parse(localStorage.getItem(movieId));
+  comments = JSON.parse(localStorage.getItem(movieId));
 };
 
 // localStorage에서 commentId로 댓글 삭제
@@ -132,7 +133,7 @@ const renderComment = (commentObj) => {
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
   movieId = movie.id;
-  comments = getComments();
+  getComments();
 
   renderMoiveDetail(movie);
 
@@ -162,6 +163,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     updateComment(movieId, { name, pw, comment });
     writeMod = 'add';
     updateCommentId = 0;
+    $commentBoxBtn.textContent = '등록';
   }
 
   $commentName.value = '';
@@ -172,7 +174,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     $commentContainer.removeChild($commentContainer.firstChild);
   }
 
-  comments = getComments();
+  getComments();
 
   comments.forEach((v) => {
     renderComment(v);
@@ -200,7 +202,7 @@ $commentContainer.addEventListener('click', (e) => {
         $commentContainer.removeChild($commentContainer.firstChild);
       }
 
-      comments = getComments();
+      getComments();
 
       comments.forEach((v) => {
         renderComment(v);
@@ -210,8 +212,22 @@ $commentContainer.addEventListener('click', (e) => {
       $commentPw.value = comment.password;
       $commentBox.value = comment.comment;
 
+      $commentBoxBtn.textContent = '수정';
+
       writeMod = 'update';
       updateCommentId = dataset.commentId;
     }
   }
+});
+
+document.querySelector('.comment-cancel').addEventListener('click', (e) => {
+  $commentName.value = '';
+  $commentPw.value = '';
+  $commentBox.value = '';
+
+  writeMod = 'add';
+  updateCommentId = 0;
+  $commentBoxBtn.textContent = '등록';
+
+  e.preventDefault();
 });
