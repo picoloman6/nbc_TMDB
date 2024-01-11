@@ -122,7 +122,7 @@ $searchBtn.addEventListener('click', async (e) => {
   try {
     const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
     const res = await fetch(url, options).then((response) => response.json());
-    const data = res.results;
+    data = res.results;
 
     if (data.length === 0) {
       alert('검색 결과가 없습니다.');
