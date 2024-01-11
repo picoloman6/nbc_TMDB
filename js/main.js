@@ -181,24 +181,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       // console.log(a);
     // });
 
-    // 평점순으로 내림차순 정렬 - 되다 말았음
-    const sort_average = data.sort((a,b) => Number(b.vote_average) - Number(a.vote_average));
-    console.log(sort_average);
-
-    // 추천순으로 내림차순 정렬 - perfect!
+    // 추천순으로 내림차순 정렬
     const sort_count = data.sort((a,b) => b.vote_count - a.vote_count);
     console.log(sort_count);
 
-    // 평점순 버튼에 클릭이벤트 - 함수 : 기존 카드는 지우고, 새로운 정렬 카드로 붙이기 ?
-    // document.getElementsByClassName("sortBtn-average")[0].addEventListener('click', () => {
-      // console.log('print!');
+    // 평점순으로 내림차순 정렬
+    const sort_average = data.sort((a,b) => b.vote_average - a.vote_average);
+    console.log(sort_average);
+
+    // 평점순 버튼에 클릭이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
+    // document.querySelector(".sortBtn-average").addEventListener('click', () => {
+    //   console.log('print!');
 
       // document.getElementById("movieCardList").style.display = "none";
       
-      // data.forEach((movie) => {
-      //   const card = createMovieCard(movie);
-      //   $movieCardList.appendChild(card);
-      // });
+    //   data.forEach((movie) => {
+    //     const card = createMovieCard(movie);
+    //     $movieCardList.appendChild(card);
+    //   });
     // })
 
     // 카드 렌더링
