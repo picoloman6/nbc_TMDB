@@ -190,39 +190,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(sort_average);
 
     // 추천순 버튼에 클릭이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
-    document.querySelector('.sortBtn-count').addEventListener('click', () => {
-      while ($movieCardList.firstChild) {
-        $movieCardList.removeChild($movieCardList.firstChild);
-      };
+    document
+    .querySelector('.sortBtn-count').addEventListener('click', () => {
+        while ($movieCardList.firstChild) {
+            $movieCardList.removeChild($movieCardList.firstChild);
+        };
 
-      // data.forEach((movie) => {
-      //   const card = createMovieCard(movie);
-      //   $movieCardList.appendChild(card);
-      // });
+        data.forEach((movie) => {
+            const card = createMovieCard(movie);
+            $movieCardList.appendChild(card);
+        });
     });
+    
+    // 평점순 버튼에 클릭이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
+    document
+    .querySelector('.sortBtn-average').addEventListener('click', () => {
+        while ($movieCardList.firstChild) {
+            $movieCardList.removeChild($movieCardList.firstChild);
+        };
 
-         
-
-
-    // 평점순 버튼에 클릭이벤트 
-    // document.querySelector(".sortBtn-average").addEventListener('click', () => {
-    //   console.log('print!');
-
-      // document.getElementById("movieCardList").style.display = "none";
-      
-    //   data.forEach((movie) => {
-    //     const card = createMovieCard(movie);
-    //     $movieCardList.appendChild(card);
-    //   });
-    // })
+        data.forEach((movie) => {
+            const card = createMovieCard(movie);
+            $movieCardList.appendChild(card);
+        });
+    });
 
     // 카드 렌더링
     // data.forEach((movie) => {
     //   const card = createMovieCard(movie);
     //   $movieCardList.appendChild(card);
     // });
-
-
 
   } catch (e) {
     console.log(e);
