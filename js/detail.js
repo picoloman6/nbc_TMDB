@@ -14,6 +14,7 @@ const options = {
   }
 };
 let movieId = 0;
+let comments = [];
 let updateCommentId = 0;
 let writeMod = 'add';
 
@@ -34,26 +35,23 @@ const setComment = (name, password, comment) => {
 
 // localStorage에서 movieId로 댓글 정보 불러오기
 const getComments = () => {
-  const data = JSON.parse(localStorage.getItem(movieId));
-  return data;
+  return JSON.parse(localStorage.getItem(movieId));
 };
 
 // localStorage에서 commentId로 댓글 삭제
 const removeComment = (commentId) => {
-  const data = JSON.parse(localStorage.getItem(movieId));
-  const idx = data.findIndex((v) => v.id === commentId);
-  data.splice(idx, 1);
-  localStorage.setItem(movieId, JSON.stringify(data));
+  const idx = comments.findIndex((v) => v.id === commentId);
+  comments.splice(idx, 1);
+  localStorage.setItem(movieId, JSON.stringify(comments));
 };
 
 // localStorage에서 commentId로 댓글 수정
 const updateComment = (movieId, comment) => {
-  const data = JSON.parse(localStorage.getItem(movieId));
-  const idx = data.findIndex((v) => v.id * 1 === updateCommentId * 1);
-  data[idx].name = comment.name;
-  data[idx].password = comment.pw;
-  data[idx].comment = comment.comment;
-  localStorage.setItem(movieId, JSON.stringify(data));
+  const idx = comments.findIndex((v) => v.id * 1 === updateCommentId * 1);
+  comments[idx].name = comment.name;
+  comments[idx].password = comment.pw;
+  comments[idx].comment = comment.comment;
+  localStorage.setItem(movieId, JSON.stringify(comments));
 };
 
 // 영화 상세 정보 생성
@@ -87,7 +85,6 @@ const renderMoiveDetail = (movie) => {
 
 // 댓글 정보 생성
 const renderComment = (commentObj) => {
-  console.log(commentObj);
   const { id: commentId, name, comment } = commentObj;
 
   const $li = document.createElement('li');
@@ -135,11 +132,11 @@ const renderComment = (commentObj) => {
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
   movieId = movie.id;
-  const comments = getComments();
+  comments = getComments();
 
   renderMoiveDetail(movie);
 
-  if (comments) {
+  if (comments.length > 0) {
     comments.forEach((v) => {
       renderComment(v);
     });
@@ -175,20 +172,20 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     $commentContainer.removeChild($commentContainer.firstChild);
   }
 
-  getComments().forEach((v) => {
+  comments = getComments();
+
+  comments.forEach((v) => {
     renderComment(v);
   });
 });
 
-// 댓글 삭제
+// 댓글 삭제 및 수정 이벤트
 $commentContainer.addEventListener('click', (e) => {
-  const { className, dataset } = e.target;
+  const { className, tagName, dataset } = e.target;
+  const commentId = dataset.commentId * 1;
 
-  if (className === 'commentDleBtn') {
-    const comments = getComments();
-    const comment = comments.filter(
-      (v) => v.id * 1 === dataset.commentId * 1
-    )[0];
+  if (tagName === 'BUTTON') {
+    const comment = comments.filter((v) => v.id * 1 === commentId)[0];
     const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
 
     if (input.value !== comment.password) {
@@ -196,39 +193,25 @@ $commentContainer.addEventListener('click', (e) => {
       return;
     }
 
-    removeComment(comment.id);
+    if (className === 'commentDleBtn') {
+      removeComment(comment.id);
 
-    while ($commentContainer.firstChild) {
-      $commentContainer.removeChild($commentContainer.firstChild);
+      while ($commentContainer.firstChild) {
+        $commentContainer.removeChild($commentContainer.firstChild);
+      }
+
+      comments = getComments();
+
+      comments.forEach((v) => {
+        renderComment(v);
+      });
+    } else if (className === 'comment-update-btn') {
+      $commentName.value = comment.name;
+      $commentPw.value = comment.password;
+      $commentBox.value = comment.comment;
+
+      writeMod = 'update';
+      updateCommentId = dataset.commentId;
     }
-
-    getComments().forEach((v) => {
-      renderComment(v);
-    });
-  }
-});
-
-// 댓글 수정
-$commentContainer.addEventListener('click', (e) => {
-  const { className, dataset } = e.target;
-
-  if (className === 'comment-update-btn') {
-    const comments = getComments();
-    const comment = comments.filter(
-      (v) => v.id * 1 === dataset.commentId * 1
-    )[0];
-    const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
-
-    if (input.value !== comment.password) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    $commentName.value = comment.name;
-    $commentPw.value = comment.password;
-    $commentBox.value = comment.comment;
-
-    writeMod = 'update';
-    updateCommentId = dataset.commentId;
   }
 });
