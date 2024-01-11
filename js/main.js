@@ -86,32 +86,29 @@ document
       console.log('test');
         data.sort((a, b) => b.vote_count - a.vote_count);
 
-        while ($movieCardList.firstChild) {
-            $movieCardList.removeChild($movieCardList.firstChild);
-        };
+  while ($movieCardList.firstChild) {
+    $movieCardList.removeChild($movieCardList.firstChild);
+  }
 
-        data.forEach((movie) => {
-            const card = createMovieCard(movie);
-            $movieCardList.appendChild(card);
-        });
-    });
+  data.forEach((movie) => {
+    const card = createMovieCard(movie);
+    $movieCardList.appendChild(card);
+  });
+});
 
 // 평점순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
-document
-    .querySelector('.sortBtn-average')
-    .addEventListener('click', () => {
-        data.sort((a, b) => b.vote_average - a.vote_average);
+document.querySelector('.sortBtn-average').addEventListener('click', () => {
+  data.sort((a, b) => b.vote_average - a.vote_average);
 
-        while ($movieCardList.firstChild) {
-            $movieCardList.removeChild($movieCardList.firstChild);
-        };
+  while ($movieCardList.firstChild) {
+    $movieCardList.removeChild($movieCardList.firstChild);
+  }
 
-        data.forEach((movie) => {
-            const card = createMovieCard(movie);
-            $movieCardList.appendChild(card);
-        });
-    });
-
+  data.forEach((movie) => {
+    const card = createMovieCard(movie);
+    $movieCardList.appendChild(card);
+  });
+});
 
 // 영화 이름 검색
 
@@ -128,7 +125,7 @@ $searchBtn.addEventListener('click', async (e) => {
   try {
     const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
     const res = await fetch(url, options).then((response) => response.json());
-    const data = res.results;
+    data = res.results;
 
     if (data.length === 0) {
       alert('검색 결과가 없습니다.');
