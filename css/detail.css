@@ -100,6 +100,13 @@
   height: 180px;
 }
 
+.peopleName {
+  max-width: 130px;
+  margin-top: 5px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
 /* 댓글창 */
 .movieCommentContainer {
   width: 70%;
