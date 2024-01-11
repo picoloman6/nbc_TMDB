@@ -76,6 +76,7 @@ const renderComment = (commentObj) => {
   const $input = document.createElement('input');
   const $btn = document.createElement('button');
 
+  $li.className = 'movie-comment';
   $name.className = 'userId';
   $comment.className = 'userComment';
   $input.className = 'commentDlePW';
