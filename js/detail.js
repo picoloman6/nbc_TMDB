@@ -13,7 +13,7 @@ const setComment = (movieId, name, password, comment) => {
   let id = 1;
   const exData = localStorage.getItem(movieId);
 
-  if (exData) {
+  if (exData.length > 2) {
     data = JSON.parse(exData);
     id = data[data.length - 1].id + 1;
   }
@@ -82,6 +82,8 @@ const renderComment = (commentObj) => {
   $input.className = 'commentDlePW';
   $btn.className = 'commentDleBtn';
 
+  $input.id = `commentDlePW${commentId}`;
+
   $name.textContent = name;
   $comment.textContent = comment;
   $btn.textContent = '삭제';
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 댓글 입력 기능
-document.querySelector('.commentBtn').addEventListener('click', (e) => {
+document.querySelector('.commentBtn').addEventListener('click', () => {
   const name = $commentName.value;
   const pw = $commentPw.value;
   const comment = $commentBox.value;
@@ -126,4 +128,34 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
+});
+
+// 댓글 삭제
+$commentContainer.addEventListener('click', (e) => {
+  const { className, dataset } = e.target;
+
+  if (className === 'commentDleBtn') {
+    const comments = getComments(movieId);
+    const comment = comments.filter(
+      (v) => v.id * 1 === dataset.commentId * 1
+    )[0];
+    const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
+
+    console.log(comment);
+
+    if (input.value !== comment.password) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    removeComment(movieId, comment.id);
+
+    while ($commentContainer.firstChild) {
+      $commentContainer.removeChild($commentContainer.firstChild);
+    }
+
+    getComments(movieId).forEach((v) => {
+      renderComment(v);
+    });
+  }
 });
