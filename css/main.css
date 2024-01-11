@@ -14,11 +14,14 @@
   justify-content: center;
 }
 
+.card {
+  height: 100%;
+}
+
 .card-img-top {
   padding: 10px;
   border-radius: 15px;
-  height: 30rem;
-  object-fit: cover;
+  height: 80%;
 }
 
 .card:hover {
