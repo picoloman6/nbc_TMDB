@@ -2,9 +2,10 @@
 const $commentName = document.querySelector('.comment-name');
 const $commentPw = document.querySelector('.comment-pw');
 const $commentBox = document.querySelector('.commentBox');
+const $commentContainer = document.querySelector('.commentContainer');
 
 // 변수
-let id = 0;
+let movieId = 0;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (movieId, name, password, comment) => {
@@ -35,7 +36,8 @@ const removeComment = (movieId, commentId) => {
   localStorage.setItem(movieId, JSON.stringify(data));
 };
 
-const makeMoiveDetail = (movie) => {
+// 영화 상세 정보 생성
+const renderMoiveDetail = (movie) => {
   const {
     poster_path,
     title,
@@ -63,11 +65,50 @@ const makeMoiveDetail = (movie) => {
   $plot.textContent = overview;
 };
 
+// 댓글 정보 생성
+const renderComment = (commentObj) => {
+  const { id: commentId, name, comment } = commentObj;
+
+  const $li = document.createElement('li');
+  const $name = document.createElement('p');
+  const $comment = document.createElement('p');
+  const $div = document.createElement('div');
+  const $input = document.createElement('input');
+  const $btn = document.createElement('button');
+
+  $name.className = 'userId';
+  $comment.className = 'userComment';
+  $input.className = 'commentDlePW';
+  $btn.className = 'commentDleBtn';
+
+  $name.textContent = name;
+  $comment.textContent = comment;
+  $btn.textContent = '삭제';
+
+  $input.placeholder = '비밀번호';
+  $input.type = 'password';
+
+  $btn.dataset.commentId = commentId;
+
+  $div.appendChild($input);
+  $div.appendChild($btn);
+  $li.appendChild($name);
+  $li.appendChild($comment);
+  $li.appendChild($div);
+
+  $commentContainer.appendChild($li);
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
-  id = movie.id;
+  const comments = getComments(movie.id);
+  movieId = movie.id;
 
-  makeMoiveDetail(movie);
+  renderMoiveDetail(movie);
+  console.log(comments);
+  comments.forEach((v) => {
+    renderComment(v);
+  });
 });
 
 // 댓글 입력 기능
@@ -81,9 +122,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     return;
   }
 
-  e.preventDefault();
-
-  setComment(id, name, pw, comment);
+  setComment(movieId, name, pw, comment);
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
