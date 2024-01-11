@@ -105,39 +105,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-// 영화 이름 검색
-$searchBtn.addEventListener('click', async (e) => {
-  const keyword = $searchInput.value;
-
-  e.preventDefault();
-
-  if (keyword.length < 2) {
-    alert('2글자 이상 입력하세요');
-    return;
-  }
-
-  try {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
-    const res = await fetch(url, options).then((response) => response.json());
-    const data = res.results;
-
-    if (data.length === 0) {
-      alert('검색 결과가 없습니다.');
-    } else {
-      while ($movieCardList.firstChild) {
-        $movieCardList.removeChild($movieCardList.firstChild);
-      }
-
-      data.forEach((movie) => {
-        const card = createMovieCard(movie);
-        $movieCardList.appendChild(card);
-      });
-    }
-  } catch (e) {
-    console.log(e);
-  }
-});
-
 // 카드 정렬 - 추천순, 평점순
 
 // 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
@@ -172,3 +139,38 @@ document
             $movieCardList.appendChild(card);
         });
     });
+
+    
+// 영화 이름 검색
+
+$searchBtn.addEventListener('click', async (e) => {
+  const keyword = $searchInput.value;
+
+  e.preventDefault();
+
+  if (keyword.length < 2) {
+    alert('2글자 이상 입력하세요');
+    return;
+  }
+
+  try {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
+    const res = await fetch(url, options).then((response) => response.json());
+    const data = res.results;
+
+    if (data.length === 0) {
+      alert('검색 결과가 없습니다.');
+    } else {
+      while ($movieCardList.firstChild) {
+        $movieCardList.removeChild($movieCardList.firstChild);
+      }
+
+      data.forEach((movie) => {
+        const card = createMovieCard(movie);
+        $movieCardList.appendChild(card);
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
