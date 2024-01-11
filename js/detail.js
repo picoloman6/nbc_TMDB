@@ -5,6 +5,14 @@ const $commentBox = document.querySelector('.commentBox');
 const $commentContainer = document.querySelector('.commentContainer');
 
 // 변수
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTBiOWI1OTdkMzIzZjQxZjRhNzE0YmVhYWE1YWM4ZSIsInN1YiI6IjY1OTc3M2IxYTZjMTA0MTBkZGZhYTA1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ia1OS9T6UO-9ukTNWALTWszMDW9HDPF_c9PWhNwjz6A'
+  }
+};
 let movieId = 0;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
@@ -13,7 +21,7 @@ const setComment = (movieId, name, password, comment) => {
   let id = 1;
   const exData = localStorage.getItem(movieId);
 
-  if (exData.length > 2) {
+  if (exData && exData.length > 2) {
     data = JSON.parse(exData);
     id = data[data.length - 1].id + 1;
   }
@@ -108,19 +116,24 @@ document.addEventListener('DOMContentLoaded', () => {
   movieId = movie.id;
 
   renderMoiveDetail(movie);
-  comments.forEach((v) => {
-    renderComment(v);
-  });
+
+  if (comments) {
+    comments.forEach((v) => {
+      renderComment(v);
+    });
+  }
 });
 
 // 댓글 입력 기능
-document.querySelector('.commentBtn').addEventListener('click', () => {
+document.querySelector('.commentBtn').addEventListener('click', (e) => {
   const name = $commentName.value;
   const pw = $commentPw.value;
   const comment = $commentBox.value;
 
+  e.preventDefault();
+
   if (name === '' && pw === '' && comment === '') {
-    console.log('값을 입력하세요');
+    alert('값을 입력하세요');
     return;
   }
 
@@ -128,6 +141,14 @@ document.querySelector('.commentBtn').addEventListener('click', () => {
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
+
+  while ($commentContainer.firstChild) {
+    $commentContainer.removeChild($commentContainer.firstChild);
+  }
+
+  getComments(movieId).forEach((v) => {
+    renderComment(v);
+  });
 });
 
 // 댓글 삭제
@@ -140,8 +161,6 @@ $commentContainer.addEventListener('click', (e) => {
       (v) => v.id * 1 === dataset.commentId * 1
     )[0];
     const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
-
-    console.log(comment);
 
     if (input.value !== comment.password) {
       alert('비밀번호가 일치하지 않습니다.');
