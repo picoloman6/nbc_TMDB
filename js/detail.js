@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   movieId = movie.id;
 
   renderMoiveDetail(movie);
-  console.log(comments);
   comments.forEach((v) => {
     renderComment(v);
   });
