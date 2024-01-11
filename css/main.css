@@ -56,20 +56,26 @@ footer {
   height: 140px;
   width: 100%;
   background-color: black;
+  display: flex;
 }
 
-.footer-line {
-  /* border-top: 4px solid #000;
-  margin-top: 30px; */
+.footer-logo {
+  display: grid;
+  align-items: center;
+  padding: 3rem;
 }
 
 .footer-text {
   color: white;
   text-align: center;
   font-size: 17px;
-  margin: 60px 0 0 0;
-  padding: 60px;
+  padding: 70px 0 0 300px;
 }
+
+.footer-logoimg {
+  opacity: 0.5;
+}
+
 /* header 수정부분 */
 header {
   width: 100%;
