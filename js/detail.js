@@ -190,6 +190,11 @@ $commentContainer.addEventListener('click', (e) => {
   }
 });
 
+// 메인페이지로 이동
+document.querySelector('.main-return').onclick = function () {
+  window.location.href = './main.html';
+};
+
 // 상세정보 fetch 테스트 - 인해
 
 // document.addEventListener('DOMContentLoaded', async () => {
