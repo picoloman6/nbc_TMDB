@@ -1,8 +1,22 @@
 .search-input {
   width: 400px;
-  height: 50px;
-  border-radius: 5px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  margin: 0.5rem;
   outline: none;
+  transition: 0.3s;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+input::placeholder {
+  color: black;
+  font-size: 16px;
+}
+
+.search-input:hover {
+  border: 1.5px solid hsla(0, 0%, 50%);
+  box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
 }
 
 .row {
@@ -38,13 +52,13 @@
   margin-top: 20px;
 }
 /* footer 수정부분 */
-footer{
+footer {
   height: 140px;
   width: 100%;
   background-color: black;
 }
 
-.footer-line{
+.footer-line {
   /* border-top: 4px solid #000;
   margin-top: 30px; */
 }
@@ -63,21 +77,35 @@ header {
   background-color: black;
   display: flex;
   justify-content: center;
-  padding: 3rem!important;
+  padding: 3rem !important;
 }
 
 h1.headerName {
-  padding-left: 125px;
+  padding-left: 130px;
 }
 
 form {
-  margin-top: 50px; 
+  margin-top: 50px;
 }
 
 /* header 버튼 */
 button.search-btn {
-  border-radius: 5px;
-  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: #0063e5;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.6em 0.4em;
+  font-weight: bold;
+  min-height: 3rem;
+}
+
+button.search-btn:hover {
+  background-color: #0682f0;
+  transition: all 0.2s ease 0s;
+}
+.main-return {
+  cursor: pointer;
 }
 
 /* 추천순, 평점순 버튼 */
