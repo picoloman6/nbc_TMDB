@@ -14,6 +14,8 @@ const options = {
   }
 };
 let movieId = 0;
+let updateCommentId = 0;
+let writeMod = 'add';
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (movieId, name, password, comment) => {
@@ -41,6 +43,16 @@ const removeComment = (movieId, commentId) => {
   const data = JSON.parse(localStorage.getItem(movieId));
   const idx = data.findIndex((v) => v.id === commentId);
   data.splice(idx, 1);
+  localStorage.setItem(movieId, JSON.stringify(data));
+};
+
+// localStorage에서 commentId로 댓글 수정
+const updateComment = (movieId, comment) => {
+  const data = JSON.parse(localStorage.getItem(movieId));
+  const idx = data.findIndex((v) => v.id * 1 === updateCommentId * 1);
+  data[idx].name = comment.name;
+  data[idx].password = comment.pw;
+  data[idx].comment = comment.comment;
   localStorage.setItem(movieId, JSON.stringify(data));
 };
 
@@ -75,36 +87,46 @@ const renderMoiveDetail = (movie) => {
 
 // 댓글 정보 생성
 const renderComment = (commentObj) => {
+  console.log(commentObj);
   const { id: commentId, name, comment } = commentObj;
 
   const $li = document.createElement('li');
+  const $commentDiv = document.createElement('div');
   const $name = document.createElement('p');
   const $comment = document.createElement('p');
   const $div = document.createElement('div');
   const $input = document.createElement('input');
-  const $btn = document.createElement('button');
+  const $deleteBtn = document.createElement('button');
+  const $updateBtn = document.createElement('button');
 
   $li.className = 'movie-comment';
-  $name.className = 'userId';
+  $commentDiv.className = 'userIDComment';
+  $div.className = 'commentPWDel';
+  $name.className = 'userID';
   $comment.className = 'userComment';
   $input.className = 'commentDlePW';
-  $btn.className = 'commentDleBtn';
+  $deleteBtn.className = 'commentDleBtn';
+  $updateBtn.className = 'comment-update-btn';
 
   $input.id = `commentDlePW${commentId}`;
 
   $name.textContent = name;
   $comment.textContent = comment;
-  $btn.textContent = '삭제';
+  $deleteBtn.textContent = '삭제';
+  $updateBtn.textContent = '수정';
 
   $input.placeholder = '비밀번호';
   $input.type = 'password';
 
-  $btn.dataset.commentId = commentId;
+  $deleteBtn.dataset.commentId = commentId;
+  $updateBtn.dataset.commentId = commentId;
 
+  $commentDiv.appendChild($name);
+  $commentDiv.appendChild($comment);
   $div.appendChild($input);
-  $div.appendChild($btn);
-  $li.appendChild($name);
-  $li.appendChild($comment);
+  $div.appendChild($deleteBtn);
+  $div.appendChild($updateBtn);
+  $li.appendChild($commentDiv);
   $li.appendChild($div);
 
   $commentContainer.appendChild($li);
@@ -137,7 +159,14 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     return;
   }
 
-  setComment(movieId, name, pw, comment);
+  if (writeMod === 'add') {
+    setComment(movieId, name, pw, comment);
+  } else {
+    updateComment(movieId, { name, pw, comment });
+    writeMod = 'add';
+    updateCommentId = 0;
+  }
+
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
@@ -176,5 +205,30 @@ $commentContainer.addEventListener('click', (e) => {
     getComments(movieId).forEach((v) => {
       renderComment(v);
     });
+  }
+});
+
+// 댓글 수정
+$commentContainer.addEventListener('click', (e) => {
+  const { className, dataset } = e.target;
+
+  if (className === 'comment-update-btn') {
+    const comments = getComments(movieId);
+    const comment = comments.filter(
+      (v) => v.id * 1 === dataset.commentId * 1
+    )[0];
+    const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
+
+    if (input.value !== comment.password) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    $commentName.value = comment.name;
+    $commentPw.value = comment.password;
+    $commentBox.value = comment.comment;
+
+    writeMod = 'update';
+    updateCommentId = dataset.commentId;
   }
 });
