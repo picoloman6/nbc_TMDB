@@ -1,11 +1,63 @@
-.headerName {
-  font-size: 60px;
+/* header */
+header {
+  width: 100%;
+  height: 300px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding: 3rem !important;
 }
 
-.form-control {
+h1.headerName {
+  padding-left: 130px;
+}
+
+form {
+  margin-top: 50px;
+}
+
+/* header 버튼 */
+button.search-btn {
+  border: none;
+  border-radius: 10px;
+  background-color: #0063e5;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.6em 0.4em;
+  font-weight: bold;
+  min-height: 3rem;
+}
+
+button.search-btn:hover {
+  background-color: #0682f0;
+  transition: all 0.2s ease 0s;
+}
+.main-return {
+  cursor: pointer;
+}
+
+.search-input {
   width: 400px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  margin: 0.5rem;
+  outline: none;
+  transition: 0.3s;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
+input::placeholder {
+  color: black;
+  font-size: 16px;
+}
+
+.search-input:hover {
+  border: 1.5px solid hsla(0, 0%, 50%);
+  box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
+}
+
+/* 영화소개 */
 .movieContainer {
   width: 70%;
   margin: auto;
@@ -38,6 +90,16 @@
   font-weight: bold;
 }
 
+.movieGenre {
+  font-size: large;
+  margin-bottom: 40px;
+}
+
+.movieTime {
+  font-size: large;
+  margin-bottom: 40px;
+}
+
 .movieOpen {
   font-size: large;
   margin-bottom: 40px;
@@ -47,10 +109,55 @@
   font-size: large;
 }
 
+/* 영화줄거리 */
 .moviePlot {
   margin-top: 20px;
+  border-bottom: gray solid 1px;
+  line-height: 28px;
+  padding-bottom: 20px;
 }
 
+/* 주요 출연진 */
+.people {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.peopleCards {
+  display: flex;
+  overflow-x: scroll;
+  padding-bottom: 5px;
+}
+
+.peopleCards::-webkit-scrollbar {
+  height: 10px;
+}
+
+.peopleCards::-webkit-scrollbar-thumb {
+  height: 30%;
+  background: rgba(178.5, 178.5, 178.5, 1);
+  border-radius: 5px;
+}
+
+.peopleCards::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+}
+
+.peopleCard2 {
+  width: 140px;
+  height: 180px;
+}
+
+.peopleName {
+  max-width: 130px;
+  margin-top: 5px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/* 댓글창 */
 .movieCommentContainer {
   width: 70%;
   margin: auto;
@@ -64,6 +171,7 @@
 }
 
 .movieCommentName2 {
+  font-weight: bold;
   font-size: 20px;
   margin-right: 5px;
 }
@@ -119,10 +227,61 @@
   color: white;
 }
 
+/* 생성된 댓글 */
 .commentContainer {
   margin-top: 20px;
 }
 
+.userID {
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  font-size: 12px;
+}
+
+.userComment {
+  font-size: 12px;
+}
+
+.userCommentBox {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: rgb(128, 128, 128) solid 1px;
+}
+
+.commentDlePW {
+  width: 80px;
+  height: 25px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+  margin-right: 5px;
+}
+
+.commentDleBtn {
+  width: 60px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(10, 88, 202);
+  color: white;
+}
+
+.movie-comment {
+  display: flex;
+  border-bottom: rgb(231, 231, 231) solid 1px;
+  align-items: flex-end;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}
+
+.userIDComment {
+  display: flex;
+}
+
+/* 푸터 */
 .footerHead {
   margin-top: 30px;
   border-top: solid;
@@ -134,43 +293,4 @@
   display: flex;
   justify-content: center;
   padding-top: 30px;
-}
-
-.userID {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.userComment {
-  margin-bottom: 3px;
-}
-
-.userCommentBox {
-  display: flex;
-  justify-content: space-between;
-}
-
-.commentDlePW {
-  width: 100px;
-  height: 30px;
-  background-color: rgb(233, 233, 233);
-  border-radius: 5px;
-  outline: none;
-  border: none;
-  padding-left: 10px;
-  margin-right: 5px;
-}
-
-.commentDleBtn {
-  width: 80px;
-  height: 30px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(10, 88, 202);
-  color: white;
-  margin-left: -5px;
-}
-
-.movie-comment {
-  display: flex;
 }

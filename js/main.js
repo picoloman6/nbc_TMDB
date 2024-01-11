@@ -45,10 +45,10 @@ const createMovieCard = (movie) => {
 
   $title.textContent = title;
   $overview.textContent = overview;
-  $average.textContent = `Vote Average: ${vote_average}`;
+  $average.textContent = `🍿🍿🍿 : ${vote_average}`;
 
   $body.appendChild($title);
-  $body.appendChild($overview);
+  // $body.appendChild($overview);
   $body.appendChild($average);
 
   $card.appendChild($img);
@@ -80,8 +80,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
 
-document.querySelector('.sortBtn-count').addEventListener('click', () => {
-  data.sort((a, b) => b.vote_count - a.vote_count);
+document
+    .querySelector('.sortBtn-count')
+    .addEventListener('click', () => {
+      console.log('test');
+        data.sort((a, b) => b.vote_count - a.vote_count);
 
   while ($movieCardList.firstChild) {
     $movieCardList.removeChild($movieCardList.firstChild);
@@ -142,3 +145,8 @@ $searchBtn.addEventListener('click', async (e) => {
     console.log(e);
   }
 });
+
+// 메인페이지로 이동
+document.querySelector('.main-return').onclick = function () {
+  window.location.href = './main.html';
+};

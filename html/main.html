@@ -15,30 +15,49 @@
     <script defer src="../js/main.js"></script>
   </head>
   <body>
+    <!-- 헤더 -->
     <header>
       <div class="header-container">
         <h1 class="headerName">
-          <a href=""
-            ><img src="https://i.ibb.co/Mnz2TWz/Group-2.png" alt="Group2"
-          /></a>
+          <div class="main-return">
+            <img src="https://i.ibb.co/Mnz2TWz/Group-2.png" alt="Group2" />
+          </div>
         </h1>
         <form role="search">
-          <input type="search" class="search-input" placeholder="Search..." />
-          <button type="submit" class="search-btn">입력</button>
+          <input
+            type="search"
+            class="search-input"
+            placeholder="입력 후 Enter나 검색버튼을 누르세요."
+          />
+          <button type="submit" class="search-btn">검색</button>
         </form>
       </div>
     </header>
+    <!-- 영화 리스트 -->
     <div class="container">
-      <div class="sort">
+      <div class="sort-select">
+        <select class="form-select" id="floatingSelect">
+          <option selected>기본</option>
+          <option class="sortBtn-count" value="1">추천순</option>
+          <option class="sortBtn-average" value="2">평점순</option>
+        </select>
+      </div>
+      <!-- <div class="sort">
         <button class="sortBtn-count" type="button">추천순</button>
         <button class="sortBtn-average" type="button">평점순</button>
-      </div>
+      </div> -->
       <ul class="row" id="movieCardList"></ul>
     </div>
+    <!-- 푸터 -->
     <footer>
-      <p class="footer-line"></p>
+      <div class="footer-logo">
+        <img
+          src="https://i.ibb.co/Mnz2TWz/Group-2.png"
+          class="footer-logoimg"
+        />
+      </div>
       <div class="footer-text">
-        <p>안녕하세요 수정해야 할 부분이 있으면 바로 수정하겠습니다.</p>
+        <p>MOVIEBOX에서 인기있는 영화에 대해 알아보고 검색도 해보세요!</p>
       </div>
     </footer>
   </body>

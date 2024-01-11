@@ -15,54 +15,57 @@
     <script defer src="../js/detail.js"></script>
   </head>
   <body>
-    <header class="p-5 text-bg-dark">
-      <div class="container">
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-        >
-          <a
-            href="/"
-            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-          >
-            <svg
-              class="bi me-2"
-              width="40"
-              height="32"
-              role="img"
-              aria-label="Bootstrap"
-            >
-              <use xlink:href="#bootstrap"></use>
-            </svg>
-          </a>
-          <ul
-            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-          >
-            <li class="headerName">내배캠 영화 순위</li>
-          </ul>
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <input
-              type="search"
-              class="form-control"
-              placeholder="Search..."
-              aria-label="Search"
-              oninput="filterMovies()"
-            />
-          </form>
-        </div>
+    <!-- 헤더 -->
+    <header>
+      <div class="header-container">
+        <h1 class="headerName">
+          <div class="main-return">
+            <img src="https://i.ibb.co/Mnz2TWz/Group-2.png" alt="Group2" />
+          </div>
+        </h1>
+
+        <form role="search">
+          <input
+            type="search"
+            class="search-input"
+            placeholder="입력 후 Enter나 검색버튼을 누르세요."
+          />
+          <button type="submit" class="search-btn">검색</button>
+        </form>
       </div>
     </header>
+
+    <!-- 영화소개 -->
     <section class="movieContainer">
       <div class="movieDetail">
         <img class="movieImage" />
         <div class="movieDetailDetail">
           <h3 class="movieTitle"></h3>
           <p class="movieTitle2"></p>
+          <p class="movieGenre">장르</p>
+          <p class="movieTime">런타임</p>
           <p class="movieOpen"></p>
           <p class="movieVote"></p>
         </div>
       </div>
-      <div class="moviePlot"></div>
+      <div class="moviePlot">
+        <p>대충영화소개</p>
+      </div>
+      <div>
+        <p class="people">주요 출연진</p>
+        <ol class="peopleCards">
+          <li class="peopleCard">
+            <img
+              class="peopleCard2"
+              src="https://search.pstatic.net/common?type=f&size=174x196&quality=75&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201311%2F20131118115820901-1644449.jpg"
+            />
+            <p class="peopleName">어어어어그래</p>
+          </li>
+        </ol>
+      </div>
     </section>
+
+    <!-- 댓글창 -->
     <section class="movieCommentContainer">
       <div class="movieCommentName">
         <h2 class="movieCommentName2">한줄평</h2>
@@ -70,7 +73,7 @@
       </div>
       <form class="formContainer">
         <input type="text" class="comment-name" placeholder="이름" />
-        <input type="text" class="comment-pw" placeholder="비밀번호" />
+        <input type="password" class="comment-pw" placeholder="비밀번호" />
         <input
           type="text"
           class="commentBox"
@@ -81,6 +84,8 @@
       </form>
       <ul class="commentContainer"></ul>
     </section>
+
+    <!-- 푸터 -->
     <footer class="footerHead">
       <section class="footerMain">
         <p>ㅍㅌㅍㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌㅍㅌ</p>

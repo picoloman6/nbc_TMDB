@@ -18,6 +18,8 @@ let movieId = 0;
 let comments = [];
 let updateCommentId = 0;
 let writeMod = 'add';
+// let cast;
+// let crew;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (name, password, comment) => {
@@ -63,12 +65,15 @@ const renderMoiveDetail = (movie) => {
     original_title,
     release_date,
     overview,
-    vote_average
+    vote_average,
+    test
   } = movie;
 
   const $img = document.querySelector('.movieImage');
   const $title = document.querySelector('.movieTitle');
   const $title2 = document.querySelector('.movieTitle2');
+  const $genre = document.querySelector('.movieGenre');
+  const $time = document.querySelector('.movieTime');
   const $open = document.querySelector('.movieOpen');
   const $vote = document.querySelector('.movieVote');
   const $plot = document.querySelector('.moviePlot');
@@ -78,9 +83,11 @@ const renderMoiveDetail = (movie) => {
 
   $title.textContent = title;
   $title2.textContent = original_title;
-  $open.textContent = release_date;
+  $genre.textContent = `장르 : ${test}`;
+  $time.textContent = `런타임 : ${release_date}`;
+  $open.textContent = `개봉일 : ${release_date}`;
 
-  $vote.textContent = vote_average;
+  $vote.textContent = `평점 : ${vote_average}`;
   $plot.textContent = overview;
 };
 
@@ -231,3 +238,20 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 
   e.preventDefault();
 });
+
+// 메인페이지로 이동
+document.querySelector('.main-return').onclick = function () {
+  window.location.href = './main.html';
+};
+
+// 상세정보 fetch 테스트 - 인해
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
+//   const res = await fetch(url, options).then(response => response.json())
+//   cast = res.cast;
+//   crew = res.crew;
+//   console.log(res);
+// });
+
+// 출연진 붙이기
