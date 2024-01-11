@@ -138,6 +138,8 @@ $searchBtn.addEventListener('click', async (e) => {
         const card = createMovieCard(movie);
         $movieCardList.appendChild(card);
       });
+
+      $searchInput.value = '';
     }
   } catch (e) {
     console.log(e);
