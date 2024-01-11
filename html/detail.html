@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/detail.css" />
-    <script src=""></script>
+    <script defer src="../js/detail.js"></script>
   </head>
   <body>
     <header class="p-5 text-bg-dark">
@@ -51,23 +51,17 @@
         </div>
       </div>
     </header>
-
     <section class="movieContainer">
       <div class="movieDetail">
-        <img
-          class="movieImage"
-          src="https://i.namu.wiki/i/K-h_38f43U0YX4Qe0wsgeWDrxP7MKuJxVl9USMmwGgvKUFgcGyG6AFbjybID6A8ijtUYyvuTN_N9h7C6-_qX6-Yln6h0lveSRBwBhOQKY6_SXKCc4tu46kqm1CHr4sT6xCiwl0sq_zLJPFBmtgqK9A.webp"
-        />
+        <img class="movieImage" />
         <div class="movieDetailDetail">
-          <h3 class="movieTitle">영화한글이름</h3>
-          <p class="movieTitle2">영화영어이름</p>
-          <p class="movieOpen">개봉일자</p>
-          <p class="movieVote">평점</p>
+          <h3 class="movieTitle"></h3>
+          <p class="movieTitle2"></p>
+          <p class="movieOpen"></p>
+          <p class="movieVote"></p>
         </div>
       </div>
-      <div class="moviePlot">
-        <p>대충영화소개</p>
-      </div>
+      <div class="moviePlot"></div>
     </section>
     <section class="movieCommentContainer">
       <div class="movieCommentName">
@@ -75,8 +69,8 @@
         <p class="movieCommentName3">(0)</p>
       </div>
       <form class="formContainer">
-        <input type="text" class="commentID" placeholder="닉네임" />
-        <input type="text" class="commentPW" placeholder="비밀번호" />
+        <input type="text" class="comment-name" placeholder="이름" />
+        <input type="text" class="comment-pw" placeholder="비밀번호" />
         <input
           type="text"
           class="commentBox"
@@ -84,21 +78,7 @@
         />
         <button class="commentBtn">등록</button>
       </form>
-      <div class="commentContainer">
-        <ul>
-          댓글이 없습니다.
-        </ul>
-        <ul class="userCommentBox">
-          <li>
-            <p class="userID">닉네임</p>
-            <p class="userComment">내용</p>
-          </li>
-          <div>
-            <input type="text" class="commentDlePW" placeholder="비밀번호" />
-            <button class="commentDleBtn">삭제</button>
-          </div>
-        </ul>
-      </div>
+      <ul class="commentContainer"></ul>
     </section>
     <footer class="footerHead">
       <section class="footerMain">

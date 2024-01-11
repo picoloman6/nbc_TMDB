@@ -3,7 +3,7 @@ const $searchInput = document.querySelector('.search-input');
 const $searchBtn = document.querySelector('.search-btn');
 const $movieCardList = document.querySelector('#movieCardList');
 
-// 변수
+// // 전역변수 설정
 const options = {
   method: 'GET',
   headers: {
@@ -12,38 +12,7 @@ const options = {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTBiOWI1OTdkMzIzZjQxZjRhNzE0YmVhYWE1YWM4ZSIsInN1YiI6IjY1OTc3M2IxYTZjMTA0MTBkZGZhYTA1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ia1OS9T6UO-9ukTNWALTWszMDW9HDPF_c9PWhNwjz6A'
   }
 };
-
-// 전역변수 설정
 let data;
-
-// localStorage에 movieId로 영화 댓글 정보 저장
-const setComment = (movieId, name, password) => {
-  let data = [];
-  let id = 1;
-  const exData = localStorage.getItem(movieId);
-
-  if (exData) {
-    data = JSON.parse(exData);
-    id = data[data.length - 1].id + 1;
-  }
-
-  data.push({ id, name, password });
-  localStorage.setItem(movieId, JSON.stringify(data));
-};
-
-// localStorage에서 movieId로 댓글 정보 불러오기
-const getComments = (movieId) => {
-  const data = JSON.parse(localStorage.getItem(movieId));
-  return data;
-};
-
-// localStorage에서 commentId로 댓글 삭제
-const removeComment = (movieId, commentId) => {
-  const data = JSON.parse(localStorage.getItem(movieId));
-  const idx = data.findIndex((v) => v.id === commentId);
-  data.splice(idx, 1);
-  localStorage.setItem(movieId, JSON.stringify(data));
-};
 
 // 영화 정보 카드 DOM 생성
 const createMovieCard = (movie) => {
@@ -69,7 +38,9 @@ const createMovieCard = (movie) => {
   $img.alt = title;
 
   $wrapper.onclick = function () {
-    console.log(getComments(id));
+    const stringMovie = JSON.stringify(movie);
+    localStorage.setItem('movie', stringMovie);
+    location.href = `./detail.html?id=${id}`;
   };
 
   $title.textContent = title;
