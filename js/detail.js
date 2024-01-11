@@ -18,7 +18,7 @@ let updateCommentId = 0;
 let writeMod = 'add';
 
 // localStorage에 movieId로 영화 댓글 정보 저장
-const setComment = (movieId, name, password, comment) => {
+const setComment = (name, password, comment) => {
   let data = [];
   let id = 1;
   const exData = localStorage.getItem(movieId);
@@ -33,13 +33,13 @@ const setComment = (movieId, name, password, comment) => {
 };
 
 // localStorage에서 movieId로 댓글 정보 불러오기
-const getComments = (movieId) => {
+const getComments = () => {
   const data = JSON.parse(localStorage.getItem(movieId));
   return data;
 };
 
 // localStorage에서 commentId로 댓글 삭제
-const removeComment = (movieId, commentId) => {
+const removeComment = (commentId) => {
   const data = JSON.parse(localStorage.getItem(movieId));
   const idx = data.findIndex((v) => v.id === commentId);
   data.splice(idx, 1);
@@ -134,8 +134,8 @@ const renderComment = (commentObj) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
-  const comments = getComments(movie.id);
   movieId = movie.id;
+  const comments = getComments();
 
   renderMoiveDetail(movie);
 
@@ -160,7 +160,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
   }
 
   if (writeMod === 'add') {
-    setComment(movieId, name, pw, comment);
+    setComment(name, pw, comment);
   } else {
     updateComment(movieId, { name, pw, comment });
     writeMod = 'add';
@@ -175,7 +175,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     $commentContainer.removeChild($commentContainer.firstChild);
   }
 
-  getComments(movieId).forEach((v) => {
+  getComments().forEach((v) => {
     renderComment(v);
   });
 });
@@ -185,7 +185,7 @@ $commentContainer.addEventListener('click', (e) => {
   const { className, dataset } = e.target;
 
   if (className === 'commentDleBtn') {
-    const comments = getComments(movieId);
+    const comments = getComments();
     const comment = comments.filter(
       (v) => v.id * 1 === dataset.commentId * 1
     )[0];
@@ -196,13 +196,13 @@ $commentContainer.addEventListener('click', (e) => {
       return;
     }
 
-    removeComment(movieId, comment.id);
+    removeComment(comment.id);
 
     while ($commentContainer.firstChild) {
       $commentContainer.removeChild($commentContainer.firstChild);
     }
 
-    getComments(movieId).forEach((v) => {
+    getComments().forEach((v) => {
       renderComment(v);
     });
   }
@@ -213,7 +213,7 @@ $commentContainer.addEventListener('click', (e) => {
   const { className, dataset } = e.target;
 
   if (className === 'comment-update-btn') {
-    const comments = getComments(movieId);
+    const comments = getComments();
     const comment = comments.filter(
       (v) => v.id * 1 === dataset.commentId * 1
     )[0];
