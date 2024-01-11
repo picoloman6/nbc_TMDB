@@ -45,7 +45,7 @@ const createMovieCard = (movie) => {
 
   $title.textContent = title;
   $overview.textContent = overview;
-  $average.textContent = `Vote Average: ${vote_average}`;
+  $average.textContent = `🍿🍿🍿 : ${vote_average}`;
 
   $body.appendChild($title);
   // $body.appendChild($overview);
