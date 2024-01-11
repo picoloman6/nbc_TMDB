@@ -14,6 +14,8 @@ const options = {
   }
 };
 let movieId = 0;
+// let cast;
+// let crew;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (movieId, name, password, comment) => {
@@ -178,3 +180,15 @@ $commentContainer.addEventListener('click', (e) => {
     });
   }
 });
+
+// 상세정보 fetch 테스트 - 인해
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
+//   const res = await fetch(url, options).then(response => response.json())
+//   cast = res.cast;
+//   crew = res.crew;
+//   console.log(res);
+// });
+
+// 출연진 붙이기
