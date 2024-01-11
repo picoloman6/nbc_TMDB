@@ -48,7 +48,7 @@ const createMovieCard = (movie) => {
   $average.textContent = `Vote Average: ${vote_average}`;
 
   $body.appendChild($title);
-  $body.appendChild($overview);
+  // $body.appendChild($overview);
   $body.appendChild($average);
 
   $card.appendChild($img);
@@ -111,7 +111,7 @@ document
         });
     });
 
-    
+
 // 영화 이름 검색
 
 $searchBtn.addEventListener('click', async (e) => {

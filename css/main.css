@@ -17,6 +17,8 @@
 .card-img-top {
   padding: 10px;
   border-radius: 15px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .card:hover {
