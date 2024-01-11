@@ -54,12 +54,15 @@ const renderMoiveDetail = (movie) => {
     original_title,
     release_date,
     overview,
-    vote_average
+    vote_average,
+    test
   } = movie;
 
   const $img = document.querySelector('.movieImage');
   const $title = document.querySelector('.movieTitle');
   const $title2 = document.querySelector('.movieTitle2');
+  const $genre = document.querySelector('.movieGenre');
+  const $time = document.querySelector('.movieTime');
   const $open = document.querySelector('.movieOpen');
   const $vote = document.querySelector('.movieVote');
   const $plot = document.querySelector('.moviePlot');
@@ -69,9 +72,11 @@ const renderMoiveDetail = (movie) => {
 
   $title.textContent = title;
   $title2.textContent = original_title;
-  $open.textContent = release_date;
+  $genre.textContent = `장르 : ${test}`;
+  $time.textContent = `런타임 : ${release_date}`;
+  $open.textContent = `개봉일 : ${release_date}`;
 
-  $vote.textContent = vote_average;
+  $vote.textContent = `평점 : ${vote_average}`;
   $plot.textContent = overview;
 };
 
@@ -80,6 +85,7 @@ const renderComment = (commentObj) => {
   const { id: commentId, name, comment } = commentObj;
 
   const $li = document.createElement('li');
+  const $commentDiv = document.createElement('div');
   const $name = document.createElement('p');
   const $comment = document.createElement('p');
   const $div = document.createElement('div');
@@ -87,7 +93,9 @@ const renderComment = (commentObj) => {
   const $btn = document.createElement('button');
 
   $li.className = 'movie-comment';
-  $name.className = 'userId';
+  $commentDiv.className = 'userIDComment';
+  $div.className = 'commentPWDel';
+  $name.className = 'userID';
   $comment.className = 'userComment';
   $input.className = 'commentDlePW';
   $btn.className = 'commentDleBtn';
@@ -103,10 +111,11 @@ const renderComment = (commentObj) => {
 
   $btn.dataset.commentId = commentId;
 
+  $commentDiv.appendChild($name);
+  $commentDiv.appendChild($comment);
   $div.appendChild($input);
   $div.appendChild($btn);
-  $li.appendChild($name);
-  $li.appendChild($comment);
+  $li.appendChild($commentDiv);
   $li.appendChild($div);
 
   $commentContainer.appendChild($li);
