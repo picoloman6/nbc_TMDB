@@ -28,9 +28,14 @@ input::placeholder {
   justify-content: center;
 }
 
+.card {
+  height: 100%;
+}
+
 .card-img-top {
   padding: 10px;
   border-radius: 15px;
+  height: 80%;
 }
 
 .card:hover {
@@ -125,4 +130,16 @@ button.search-btn:hover {
   margin-left: 10px;
   background-color: gray;
   color: white;
+}
+
+/* 정렬 selector */
+.form-select {
+  width: 100px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.sort-select {
+  display: flex;
+  justify-content: flex-end;
 }
