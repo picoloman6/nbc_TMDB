@@ -77,7 +77,7 @@
   margin-top: 10px;
 }
 
-.commentID {
+.comment-name {
   width: 100px;
   height: 35px;
   background-color: rgb(233, 233, 233);
@@ -88,7 +88,7 @@
   margin-right: 5px;
 }
 
-.commentPW {
+.comment-pw {
   width: 100px;
   height: 35px;
   background-color: rgb(233, 233, 233);

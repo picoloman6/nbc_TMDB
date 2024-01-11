@@ -1,5 +1,13 @@
+// DOM 요소
+const $commentName = document.querySelector('.comment-name');
+const $commentPw = document.querySelector('.comment-pw');
+const $commentBox = document.querySelector('.commentBox');
+
+// 변수
+let id = 0;
+
 // localStorage에 movieId로 영화 댓글 정보 저장
-const setComment = (movieId, name, password) => {
+const setComment = (movieId, name, password, comment) => {
   let data = [];
   let id = 1;
   const exData = localStorage.getItem(movieId);
@@ -9,7 +17,7 @@ const setComment = (movieId, name, password) => {
     id = data[data.length - 1].id + 1;
   }
 
-  data.push({ id, name, password });
+  data.push({ id, name, password, comment });
   localStorage.setItem(movieId, JSON.stringify(data));
 };
 
@@ -29,7 +37,6 @@ const removeComment = (movieId, commentId) => {
 
 const makeMoiveDetail = (movie) => {
   const {
-    id,
     poster_path,
     title,
     original_title,
@@ -58,6 +65,25 @@ const makeMoiveDetail = (movie) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
+  id = movie.id;
 
   makeMoiveDetail(movie);
+});
+
+document.querySelector('.commentBtn').addEventListener('click', (e) => {
+  const name = $commentName.value;
+  const pw = $commentPw.value;
+  const comment = $commentBox.value;
+
+  if (name === '' && pw === '' && comment === '') {
+    console.log('값을 입력하세요');
+    return;
+  }
+
+  e.preventDefault();
+
+  setComment(id, name, pw, comment);
+  $commentName.value = '';
+  $commentPw.value = '';
+  $commentBox.value = '';
 });
