@@ -1,3 +1,4 @@
+/* 헤더  */
 .headerName {
   font-size: 60px;
 }
@@ -6,6 +7,7 @@
   width: 400px;
 }
 
+/* 영화소개 */
 .movieContainer {
   width: 70%;
   margin: auto;
@@ -47,10 +49,26 @@
   font-size: large;
 }
 
+/* 영화줄거리 */
 .moviePlot {
   margin-top: 20px;
+  border-bottom: gray solid 1px;
 }
 
+/* 주요 출연진 */
+.people {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.peopleCard {
+  background-color: aqua;
+  min-width: 120px;
+}
+
+/* 댓글창 */
 .movieCommentContainer {
   width: 70%;
   margin: auto;
@@ -123,6 +141,7 @@
   margin-top: 20px;
 }
 
+/* 푸터 */
 .footerHead {
   margin-top: 30px;
   border-top: solid;
@@ -148,6 +167,7 @@
 .userCommentBox {
   display: flex;
   justify-content: space-between;
+  border-bottom: gray solid 1px;
 }
 
 .commentDlePW {
