@@ -58,7 +58,7 @@ const updateComment = (movieId, comment) => {
 };
 
 // 영화 상세 정보 생성
-const renderMoiveDetail = (movie) => {
+const renderMoiveDetail = (movie, movieDetails) => {
   const {
     poster_path,
     title,
@@ -69,23 +69,29 @@ const renderMoiveDetail = (movie) => {
     test
   } = movie;
 
+  const { genres, runtime, budget, revenue } = movieDetails;
+
   const $img = document.querySelector('.movieImage');
   const $title = document.querySelector('.movieTitle');
   const $title2 = document.querySelector('.movieTitle2');
   const $genre = document.querySelector('.movieGenre');
-  const $time = document.querySelector('.movieTime');
+  const $runtime = document.querySelector('.movieTime');
   const $open = document.querySelector('.movieOpen');
   const $vote = document.querySelector('.movieVote');
   const $plot = document.querySelector('.moviePlot');
+  const $budget = document.querySelector('.movieBudget');
+  const $revenue = document.querySelector('.movieRenevue');
 
   $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   $img.alt = title;
 
   $title.textContent = title;
   $title2.textContent = original_title;
-  $genre.textContent = `장르 : ${test}`;
-  $time.textContent = `런타임 : ${release_date}`;
+  $genre.textContent = `장르 : ${genres.join(', ')}`;
+  $runtime.textContent = `런타임 : ${runtime}분`;
   $open.textContent = `개봉일 : ${release_date}`;
+  $budget.textContent = `제작비 : ${budget}`;
+  $revenue.textContent = `월드 박스 오피스 : ${revenue}`;
 
   $vote.textContent = `평점 : ${vote_average}`;
   $plot.textContent = overview;
@@ -138,19 +144,23 @@ const renderComment = (commentObj) => {
 };
 
 const getMovieDetails = async () => {
-  const url = 'https://api.themoviedb.org/3/movie/280?language=ko-KR';
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
   const res = await fetch(url, options).then((resoponse) => resoponse.json());
-  const data = res.results;
-  console.log(data);
+  const genres = res.genres.map((v) => v.name);
+  const runtime = res.runtime;
+  const budget = res.budget;
+  const revenue = res.revenue;
+
+  return { genres, runtime, budget, revenue };
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
-  await getMovieDetails();
   movieId = movie.id;
+  const movieDetails = await getMovieDetails();
   getComments();
 
-  renderMoiveDetail(movie);
+  renderMoiveDetail(movie, movieDetails);
 
   if (comments && comments.length > 0) {
     comments.forEach((v) => {
