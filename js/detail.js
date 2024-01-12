@@ -161,6 +161,38 @@ const getMovieDetails = async () => {
   return { genres, runtime, budget, revenue };
 };
 
+// 주요 출연진
+const persons = () => {
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`,
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const peopleList = document.getElementById('peopleList');
+
+      data.cast.forEach((person) => {
+        if (person.profile_path !== null) {
+          const listItem = document.createElement('li');
+          listItem.className = 'peopleCard';
+
+          const image = document.createElement('img');
+          image.className = 'peopleCard2';
+          image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
+          listItem.appendChild(image);
+
+          const name = document.createElement('p');
+          name.className = 'peopleName';
+          name.textContent = person.name;
+          listItem.appendChild(name);
+
+          peopleList.appendChild(listItem);
+        }
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
   movieId = movie.id;
@@ -168,6 +200,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   getComments();
 
   renderMoiveDetail(movie, movieDetails);
+
+  persons();
 
   if (comments && comments.length > 0) {
     comments.forEach((v) => {

@@ -13,14 +13,14 @@ h1.headerName {
 }
 
 form {
-  margin-top: 50px;
+  margin: 50px 0 0 10px;
 }
 
 /* header 버튼 */
 button.search-btn {
-  border: none;
+  border: 2px solid white;
   border-radius: 10px;
-  background-color: #0063e5;
+  background-color: #0000;
   color: white;
   font-size: 1.2rem;
   padding: 0.6em 0.4em;
@@ -29,26 +29,29 @@ button.search-btn {
 }
 
 button.search-btn:hover {
-  background-color: #0682f0;
+  background-color: white;
   transition: all 0.2s ease 0s;
+  color: black;
 }
 .main-return {
   cursor: pointer;
 }
 
+/* header 검색창 */
 .search-input {
   width: 400px;
   height: 48px;
   border-radius: 10px;
-  border: 1.5px solid;
+  border: 2px solid #f9f9f9;
   margin: 0.5rem;
   outline: none;
-  transition: 0.3s;
-  background-color: rgba(255, 255, 255, 0.6);
+  transition: 0.1s;
+  background-color: black;
+  color: white;
 }
 
-input::placeholder {
-  color: black;
+.search-input::placeholder {
+  color: white;
   font-size: 16px;
 }
 
@@ -142,6 +145,7 @@ input::placeholder {
 .peopleCard2 {
   width: 140px;
   height: 180px;
+  padding: 2px;
 }
 
 .peopleName {
@@ -212,15 +216,23 @@ input::placeholder {
   margin-right: 5px;
 }
 
-.commentBtn,
-.comment-cancel {
-  width: 75px;
+.commentBtn {
+  width: 80px;
   height: 35px;
   border: none;
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
-  margin-right: 5px;
+}
+
+.comment-cancel {
+  width: 80px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(177, 13, 13);
+  color: white;
+  margin-left: 5px;
 }
 
 /* 생성된 댓글 */
@@ -279,16 +291,35 @@ input::placeholder {
   display: flex;
 }
 
-/* 푸터 */
-.footerHead {
-  margin-top: 30px;
-  border-top: solid;
+.comment-update-btn {
+  width: 60px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(10, 88, 202);
+  color: white;
 }
 
-.footerMain {
-  width: 70%;
-  margin: auto;
+/* footer */
+footer {
+  width: 100%;
+  background-color: black;
+  margin-top: 70px;
+}
+
+.container-footer {
   display: flex;
-  justify-content: center;
-  padding-top: 30px;
+  padding: 3rem;
+}
+
+.footer-text {
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  padding-left: 24%;
+  line-height: 1.5rem;
+}
+
+.footer-logoimg {
+  opacity: 0.6;
 }
