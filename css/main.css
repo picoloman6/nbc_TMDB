@@ -112,7 +112,7 @@ button.search-btn:hover {
   color: white;
 }
 
-input::placeholder {
+.search-input::placeholder {
   color: white;
   font-size: 16px;
 }
