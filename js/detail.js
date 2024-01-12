@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import '../css/detail.css';
 import '../css/reset.css';
+import '../css/detail.css';
 
 // DOM 요소
 const $commentName = document.querySelector('.comment-name');
@@ -300,7 +300,7 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 
 // 메인페이지로 이동
 document.querySelector('.main-return').onclick = function () {
-  window.location.href = './main.html';
+  window.location.href = './index.html';
 };
 
 // 상세정보 fetch 테스트 - 인해
