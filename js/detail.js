@@ -65,8 +65,7 @@ const renderMoiveDetail = (movie, movieDetails) => {
     original_title,
     release_date,
     overview,
-    vote_average,
-    test
+    vote_average
   } = movie;
 
   const { genres, runtime, budget, revenue } = movieDetails;
