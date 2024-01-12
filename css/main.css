@@ -46,6 +46,7 @@ footer {
 .container-footer {
   display: flex;
   padding: 3rem;
+  align-items: center;
 }
 
 .footer-text {

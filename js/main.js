@@ -91,7 +91,6 @@ document.querySelector('.form-select').addEventListener('change', (e) => {
     data.sort((a, b) => b.vote_count - a.vote_count);
   } else if (optionValue === '2') {
     data.sort((a, b) => b.vote_average - a.vote_average);
-    
   }
   while ($movieCardList.firstChild) {
     $movieCardList.removeChild($movieCardList.firstChild);
@@ -141,5 +140,5 @@ $searchBtn.addEventListener('click', async (e) => {
 
 // 메인페이지로 이동
 document.querySelector('.main-return').onclick = function () {
-  window.location.href = './main.html';
+  window.location.href = './index.html';
 };
