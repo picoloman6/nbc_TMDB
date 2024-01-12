@@ -1,11 +1,3 @@
-.headerName {
-  font-size: 60px;
-}
-
-.form-control {
-  width: 400px;
-}
-
 .row {
   margin-top: 20px;
 }
@@ -15,9 +7,14 @@
   justify-content: center;
 }
 
+.card {
+  height: 100%;
+}
+
 .card-img-top {
   padding: 10px;
   border-radius: 15px;
+  height: 80%;
 }
 
 .card:hover {
@@ -37,4 +34,116 @@
 
 .card-text2 {
   margin-top: 20px;
+}
+
+/* footer */
+footer {
+  width: 100%;
+  background-color: black;
+  margin-top: 70px;
+}
+
+.container-footer {
+  display: flex;
+  padding: 3rem;
+  align-items: center;
+}
+
+.footer-text {
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  padding-left: 24%;
+  line-height: 1.5rem;
+}
+
+.footer-logoimg {
+  opacity: 0.6;
+}
+
+/* header */
+header {
+  width: 100%;
+  height: 300px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  padding: 3rem !important;
+}
+
+h1.headerName {
+  padding-left: 130px;
+}
+
+form {
+  margin: 50px 0 0 10px;
+}
+
+/* header 버튼 */
+button.search-btn {
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: #0000;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.6em 0.4em;
+  font-weight: bold;
+  min-height: 3rem;
+}
+
+button.search-btn:hover {
+  background-color: white;
+  transition: all 0.2s ease 0s;
+  color: black;
+}
+.main-return {
+  cursor: pointer;
+}
+
+/* header 검색창 */
+.search-input {
+  width: 400px;
+  height: 48px;
+  border-radius: 10px;
+  border: 2px solid #f9f9f9;
+  margin: 0.5rem;
+  outline: none;
+  transition: 0.1s;
+  background-color: black;
+  color: white;
+}
+
+.search-input::placeholder {
+  color: white;
+  font-size: 16px;
+}
+
+.search-input:hover {
+  border: 1.5px solid hsla(0, 0%, 50%);
+  box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
+}
+
+/* 추천순, 평점순 버튼 */
+.sort {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.sort button {
+  margin-left: 10px;
+  background-color: gray;
+  color: white;
+}
+
+/* 정렬 selector */
+.form-select {
+  width: 100px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.sort-select {
+  display: flex;
+  justify-content: flex-end;
 }
