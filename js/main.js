@@ -78,105 +78,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // 카드 정렬 - 추천순, 평점순
 
-// 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
-
-// document.querySelector('.form-select').addEventListener('change', (e) => {
-//   console.log(e.target.value);
-//   data.sort((a, b) => b.vote_count - a.vote_count);
-
-//   while ($movieCardList.firstChild) {
-//     $movieCardList.removeChild($movieCardList.firstChild);
-//   }
-
-//   data.forEach((movie) => {
-//     const card = createMovieCard(movie);
-//     $movieCardList.appendChild(card);
-//   });
-// });
-
-// 평점순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
-// document.querySelector('.sortBtn-average').addEventListener('click', () => {
-//   data.sort((a, b) => b.vote_average - a.vote_average);
-
-//   while ($movieCardList.firstChild) {
-//     $movieCardList.removeChild($movieCardList.firstChild);
-//   }
-
-//   data.forEach((movie) => {
-//     const card = createMovieCard(movie);
-//     $movieCardList.appendChild(card);
-//   });
-// });
-
-// option 태그에 click 이벤트 주기
-// 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
-// const selectElement = document.querySelector(".form-select");
-
-// selectElement.addEventListener("change", (event) => {
-//   const a = event.target.value;
-//   if (a === 1) {
-//     return console.log('test');
-//   }
-// });
-
-function sortCards() {
-  const selectElement = document.querySelector('.form-select');
-  const chooseOption = selectElement.options[selectElement.selectedIndex].value;
-
-  if (chooseOption === '1') {
+document.querySelector('.form-select').addEventListener('change', (e) => {
+  const optionValue = e.target.value;
+  if (optionValue === '1') {
     data.sort((a, b) => b.vote_count - a.vote_count);
-  } else if (chooseOption === '2') {
+  } else if (optionValue === '2') {
     data.sort((a, b) => b.vote_average - a.vote_average);
   }
-    while ($movieCardList.firstChild) {
-      $movieCardList.removeChild($movieCardList.firstChild);
-    }
-  
-    data.forEach((movie) => {
-      const card = createMovieCard(movie);
-      $movieCardList.appendChild(card);
-    });
-}
+  while ($movieCardList.firstChild) {
+    $movieCardList.removeChild($movieCardList.firstChild);
+  }
 
-// selectElement.addEventListener("change", (event) => {
-//   const a = event.target.value;
-//   if (a === 1) {
-//     console.log('test');
-//     data.sort((a, b) => b.vote_count - a.vote_count);
-
-//     while ($movieCardList.firstChild) {
-//       $movieCardList.removeChild($movieCardList.firstChild);
-//     }
-
-//     data.forEach((movie) => {
-//       const card = createMovieCard(movie);
-//       $movieCardList.appendChild(card);
-//     });
-//   } else if ( a === 2 ) {
-//     data.sort((a, b) => b.vote_average - a.vote_average);
-
-//     while ($movieCardList.firstChild) {
-//       $movieCardList.removeChild($movieCardList.firstChild);
-//     }
-
-//     data.forEach((movie) => {
-//       const card = createMovieCard(movie);
-//       $movieCardList.appendChild(card);
-//     });
-//   }
-// });
-
-//   data.sort((a, b) => b.vote_count - a.vote_count);
-
-//   while ($movieCardList.firstChild) {
-//     $movieCardList.removeChild($movieCardList.firstChild);
-//   }
-
-//   data.forEach((movie) => {
-//     const card = createMovieCard(movie);
-//     $movieCardList.appendChild(card);
-//   });
-// });
+  data.forEach((movie) => {
+    const card = createMovieCard(movie);
+    $movieCardList.appendChild(card);
+  });
+});
 
 // 영화 이름 검색
 
