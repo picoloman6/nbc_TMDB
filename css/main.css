@@ -118,19 +118,6 @@ button.search-btn:hover {
   cursor: pointer;
 }
 
-/* 추천순, 평점순 버튼 */
-.sort {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-}
-
-.sort button {
-  margin-left: 10px;
-  background-color: gray;
-  color: white;
-}
-
 /* 정렬 selector */
 .form-select {
   width: 100px;
