@@ -144,7 +144,6 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
-
 const getMovieDetails = async () => {
   const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
   const res = await fetch(url, options).then((resoponse) => resoponse.json());
@@ -186,7 +185,7 @@ const persons = () => {
     .catch((err) => console.error(err));
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
   movieId = movie.id;
   const movieDetails = await getMovieDetails();
