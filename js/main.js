@@ -1,3 +1,11 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import '../css/reset.css';
+import '../css/main.css';
+import { text } from 'body-parser';
+
 // DOM 요소
 const $searchInput = document.querySelector('.search-input');
 const $searchBtn = document.querySelector('.search-btn');
@@ -8,8 +16,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTBiOWI1OTdkMzIzZjQxZjRhNzE0YmVhYWE1YWM4ZSIsInN1YiI6IjY1OTc3M2IxYTZjMTA0MTBkZGZhYTA1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ia1OS9T6UO-9ukTNWALTWszMDW9HDPF_c9PWhNwjz6A'
+    Authorization: `Bearer ${process.env.TOKEN}`
   }
 };
 let data;
@@ -78,6 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // 카드 정렬 - 추천순, 평점순
 
+// 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
 document.querySelector('.form-select').addEventListener('change', (e) => {
   const optionValue = e.target.value;
   if (optionValue === '1') {
@@ -133,14 +141,13 @@ $searchBtn.addEventListener('click', async (e) => {
 
 // 메인페이지로 이동
 document.querySelector('.main-return').onclick = function () {
-  window.location.href = './main.html';
+  window.location.href = './index.html';
 };
 
 // 메인에서 페이지 간 이동 test
 document.querySelector('.testBtn').addEventListener('click', async () => {
   const testInput = document.querySelector('.testInput').value;
-  console.log(testInput);
-
+  console.log(typeof testInput);
   try {
     const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${testInput}`;
     const res = await fetch(url, options).then((response) => response.json());

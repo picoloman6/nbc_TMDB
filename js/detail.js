@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import '../css/reset.css';
+import '../css/detail.css';
+
 // DOM 요소
 const $commentName = document.querySelector('.comment-name');
 const $commentPw = document.querySelector('.comment-pw');
@@ -10,8 +17,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTBiOWI1OTdkMzIzZjQxZjRhNzE0YmVhYWE1YWM4ZSIsInN1YiI6IjY1OTc3M2IxYTZjMTA0MTBkZGZhYTA1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ia1OS9T6UO-9ukTNWALTWszMDW9HDPF_c9PWhNwjz6A'
+    Authorization: `Bearer ${process.env.TOKEN}`
   }
 };
 let movieId = 0;
@@ -294,7 +300,7 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 
 // 메인페이지로 이동
 document.querySelector('.main-return').onclick = function () {
-  window.location.href = './main.html';
+  window.location.href = './index.html';
 };
 
 // 상세정보 fetch 테스트 - 인해
