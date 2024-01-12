@@ -1,26 +1,3 @@
-/* 헤더 검색창 */
-.search-input {
-  width: 400px;
-  height: 48px;
-  border-radius: 10px;
-  border: 2px solid #f9f9f9;
-  margin: 0.5rem;
-  outline: none;
-  transition: 0.1s;
-  background-color: black;
-  color: white;
-}
-
-input::placeholder {
-  color: white;
-  font-size: 16px;
-}
-
-.search-input:hover {
-  border: 1.5px solid hsla(0, 0%, 50%);
-  box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
-}
-
 .row {
   margin-top: 20px;
 }
@@ -58,17 +35,16 @@ input::placeholder {
 .card-text2 {
   margin-top: 20px;
 }
-/* footer 수정부분 */
+
+/* footer */
 footer {
-  height: 140px;
   width: 100%;
   background-color: black;
-  display: flex;
+  margin-top: 70px;
 }
 
-.footer-logo {
-  display: grid;
-  align-items: center;
+.container-footer {
+  display: flex;
   padding: 3rem;
 }
 
@@ -76,14 +52,15 @@ footer {
   color: white;
   text-align: center;
   font-size: 17px;
-  padding: 70px 0 0 300px;
+  padding-left: 24%;
+  line-height: 1.5rem;
 }
 
 .footer-logoimg {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
-/* header 부분 */
+/* header */
 header {
   width: 100%;
   height: 300px;
@@ -120,6 +97,29 @@ button.search-btn:hover {
 }
 .main-return {
   cursor: pointer;
+}
+
+/* header 검색창 */
+.search-input {
+  width: 400px;
+  height: 48px;
+  border-radius: 10px;
+  border: 2px solid #f9f9f9;
+  margin: 0.5rem;
+  outline: none;
+  transition: 0.1s;
+  background-color: black;
+  color: white;
+}
+
+.search-input::placeholder {
+  color: white;
+  font-size: 16px;
+}
+
+.search-input:hover {
+  border: 1.5px solid hsla(0, 0%, 50%);
+  box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
 }
 
 /* 추천순, 평점순 버튼 */
