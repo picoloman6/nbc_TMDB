@@ -4,7 +4,6 @@ dotenv.config();
 
 import '../css/reset.css';
 import '../css/main.css';
-import { text } from 'body-parser';
 
 // DOM 요소
 const $searchInput = document.querySelector('.search-input');
