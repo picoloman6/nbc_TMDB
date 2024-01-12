@@ -137,6 +137,7 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
+// 주요 출연진
 const persons = () => {
   fetch(
     `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`,
