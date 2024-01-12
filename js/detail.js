@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 import '../css/detail.css';
 import '../css/reset.css';
 
