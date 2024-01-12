@@ -58,34 +58,41 @@ const updateComment = (movieId, comment) => {
 };
 
 // 영화 상세 정보 생성
-const renderMoiveDetail = (movie) => {
+const renderMoiveDetail = (movie, movieDetails) => {
   const {
     poster_path,
     title,
     original_title,
     release_date,
     overview,
-    vote_average,
-    test
+    vote_average
   } = movie;
+
+  const { genres, runtime, budget, revenue } = movieDetails;
 
   const $img = document.querySelector('.movieImage');
   const $title = document.querySelector('.movieTitle');
   const $title2 = document.querySelector('.movieTitle2');
   const $genre = document.querySelector('.movieGenre');
-  const $time = document.querySelector('.movieTime');
+  const $runtime = document.querySelector('.movieTime');
   const $open = document.querySelector('.movieOpen');
   const $vote = document.querySelector('.movieVote');
   const $plot = document.querySelector('.moviePlot');
+  const $budget = document.querySelector('.movieBudget');
+  const $revenue = document.querySelector('.movieRevenue');
 
   $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   $img.alt = title;
 
   $title.textContent = title;
   $title2.textContent = original_title;
-  $genre.textContent = `장르 : ${test}`;
-  $time.textContent = `런타임 : ${release_date}`;
+  $genre.textContent = `장르 : ${genres.join(', ')}`;
+  $runtime.textContent = `런타임 : ${runtime}분`;
   $open.textContent = `개봉일 : ${release_date}`;
+  $budget.textContent = `제작비 : $${budget.toLocaleString('en-US')}`;
+  $revenue.textContent = `월드 박스 오피스 : $${revenue.toLocaleString(
+    'en-US'
+  )}`;
 
   $vote.textContent = `평점 : ${vote_average}`;
   $plot.textContent = overview;
@@ -137,6 +144,18 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
+
+const getMovieDetails = async () => {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
+  const res = await fetch(url, options).then((resoponse) => resoponse.json());
+  const genres = res.genres.map((v) => v.name);
+  const runtime = res.runtime;
+  const budget = res.budget;
+  const revenue = res.revenue;
+
+  return { genres, runtime, budget, revenue };
+};
+
 // 주요 출연진
 const persons = () => {
   fetch(
@@ -170,13 +189,14 @@ const persons = () => {
 document.addEventListener('DOMContentLoaded', () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
   movieId = movie.id;
+  const movieDetails = await getMovieDetails();
   getComments();
 
-  renderMoiveDetail(movie);
+  renderMoiveDetail(movie, movieDetails);
 
   persons();
 
-  if (comments.length > 0) {
+  if (comments && comments.length > 0) {
     comments.forEach((v) => {
       renderComment(v);
     });
