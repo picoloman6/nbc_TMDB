@@ -5,7 +5,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     main: './js/main.js',
     detail: './js/detail.js'
