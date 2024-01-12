@@ -137,14 +137,22 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+const getMovieDetails = async () => {
+  const url = 'https://api.themoviedb.org/3/movie/280?language=ko-KR';
+  const res = await fetch(url, options).then((resoponse) => resoponse.json());
+  const data = res.results;
+  console.log(data);
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
   const movie = JSON.parse(localStorage.getItem('movie'));
+  await getMovieDetails();
   movieId = movie.id;
   getComments();
 
   renderMoiveDetail(movie);
 
-  if (comments.length > 0) {
+  if (comments && comments.length > 0) {
     comments.forEach((v) => {
       renderComment(v);
     });
