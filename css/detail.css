@@ -148,7 +148,7 @@ input::placeholder {
 .peopleCard2 {
   width: 140px;
   height: 180px;
-  background-color: aqua;
+  padding: 2px;
 }
 
 .peopleName {
