@@ -148,6 +148,7 @@ input::placeholder {
 .peopleCard2 {
   width: 140px;
   height: 180px;
+  background-color: aqua;
 }
 
 .peopleName {
@@ -225,6 +226,16 @@ input::placeholder {
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
+  margin-right: 5px;
+}
+
+.comment-cancel {
+  width: 80px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(177, 13, 13);
+  color: white;
 }
 
 /* 생성된 댓글 */
@@ -267,6 +278,7 @@ input::placeholder {
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
+  margin-right: 5px;
 }
 
 .movie-comment {
@@ -279,6 +291,15 @@ input::placeholder {
 
 .userIDComment {
   display: flex;
+}
+
+.comment-update-btn {
+  width: 60px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(10, 88, 202);
+  color: white;
 }
 
 /* 푸터 */
