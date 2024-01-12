@@ -1,3 +1,4 @@
+/* 헤더 검색창 */
 .search-input {
   width: 400px;
   height: 48px;
@@ -57,15 +58,17 @@ input::placeholder {
 .card-text2 {
   margin-top: 20px;
 }
-/* footer 부분 */
+/* footer 수정부분 */
 footer {
+  height: 140px;
   width: 100%;
   background-color: black;
-  margin-top: 70px;
+  display: flex;
 }
 
-.container-footer {
-  display: flex;
+.footer-logo {
+  display: grid;
+  align-items: center;
   padding: 3rem;
 }
 
@@ -73,12 +76,11 @@ footer {
   color: white;
   text-align: center;
   font-size: 17px;
-  padding-left: 24%;
-  line-height: 1.5rem;
+  padding: 70px 0 0 300px;
 }
 
 .footer-logoimg {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* header 부분 */
@@ -101,7 +103,7 @@ form {
 
 /* header 버튼 */
 button.search-btn {
-  border: 2px solid #f9f9f9;
+  border: 2px solid white;
   border-radius: 10px;
   background-color: #0000;
   color: white;
@@ -112,7 +114,7 @@ button.search-btn {
 }
 
 button.search-btn:hover {
-  background-color: #ffff;
+  background-color: white;
   transition: all 0.2s ease 0s;
   color: black;
 }
