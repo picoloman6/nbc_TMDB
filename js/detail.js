@@ -80,7 +80,7 @@ const renderMoiveDetail = (movie, movieDetails) => {
   const $vote = document.querySelector('.movieVote');
   const $plot = document.querySelector('.moviePlot');
   const $budget = document.querySelector('.movieBudget');
-  const $revenue = document.querySelector('.movieRenevue');
+  const $revenue = document.querySelector('.movieRevenue');
 
   $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   $img.alt = title;
@@ -90,8 +90,10 @@ const renderMoiveDetail = (movie, movieDetails) => {
   $genre.textContent = `장르 : ${genres.join(', ')}`;
   $runtime.textContent = `런타임 : ${runtime}분`;
   $open.textContent = `개봉일 : ${release_date}`;
-  $budget.textContent = `제작비 : ${budget}`;
-  $revenue.textContent = `월드 박스 오피스 : ${revenue}`;
+  $budget.textContent = `제작비 : $${budget.toLocaleString('en-US')}`;
+  $revenue.textContent = `월드 박스 오피스 : $${revenue.toLocaleString(
+    'en-US'
+  )}`;
 
   $vote.textContent = `평점 : ${vote_average}`;
   $plot.textContent = overview;

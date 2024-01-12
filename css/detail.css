@@ -90,22 +90,16 @@ input::placeholder {
   font-weight: bold;
 }
 
-.movieGenre {
+.movieGenre,
+.movieTime,
+.movieOpen,
+.movieVote,
+.movieBudget {
   font-size: large;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-.movieTime {
-  font-size: large;
-  margin-bottom: 40px;
-}
-
-.movieOpen {
-  font-size: large;
-  margin-bottom: 40px;
-}
-
-.movieVote {
+.movieRevenue {
   font-size: large;
 }
 
