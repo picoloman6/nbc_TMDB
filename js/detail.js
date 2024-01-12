@@ -166,20 +166,22 @@ const persons = () => {
       const peopleList = document.getElementById('peopleList');
 
       data.cast.forEach((person) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'peopleCard';
+        if (person.profile_path !== null) {
+          const listItem = document.createElement('li');
+          listItem.className = 'peopleCard';
 
-        const image = document.createElement('img');
-        image.className = 'peopleCard2';
-        image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
-        listItem.appendChild(image);
+          const image = document.createElement('img');
+          image.className = 'peopleCard2';
+          image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
+          listItem.appendChild(image);
 
-        const name = document.createElement('p');
-        name.className = 'peopleName';
-        name.textContent = person.name;
-        listItem.appendChild(name);
+          const name = document.createElement('p');
+          name.className = 'peopleName';
+          name.textContent = person.name;
+          listItem.appendChild(name);
 
-        peopleList.appendChild(listItem);
+          peopleList.appendChild(listItem);
+        }
       });
     })
     .catch((err) => console.error(err));
