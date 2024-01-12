@@ -129,3 +129,9 @@ button.search-btn:hover {
   display: flex;
   justify-content: flex-end;
 }
+
+/* 페이지 이동 연습용 */
+.test {
+  display: flex;
+  justify-content: center;
+}
