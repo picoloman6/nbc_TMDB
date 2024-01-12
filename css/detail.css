@@ -212,13 +212,15 @@ input::placeholder {
   margin-right: 5px;
 }
 
-.commentBtn {
-  width: 80px;
+.commentBtn,
+.comment-cancel {
+  width: 75px;
   height: 35px;
   border: none;
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
+  margin-right: 5px;
 }
 
 /* 생성된 댓글 */
@@ -230,11 +232,11 @@ input::placeholder {
   font-weight: bold;
   margin-bottom: 5px;
   margin-right: 15px;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .userComment {
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .userCommentBox {
@@ -254,13 +256,15 @@ input::placeholder {
   margin-right: 5px;
 }
 
-.commentDleBtn {
-  width: 60px;
+.commentDleBtn,
+.comment-update-btn {
+  width: 55px;
   height: 25px;
   border: none;
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
+  margin-right: 5px;
 }
 
 .movie-comment {
