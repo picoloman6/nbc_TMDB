@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import '../css/reset.css';
+import '../css/main.css';
+
 // DOM 요소
 const $searchInput = document.querySelector('.search-input');
 const $searchBtn = document.querySelector('.search-btn');
@@ -8,8 +15,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTBiOWI1OTdkMzIzZjQxZjRhNzE0YmVhYWE1YWM4ZSIsInN1YiI6IjY1OTc3M2IxYTZjMTA0MTBkZGZhYTA1OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ia1OS9T6UO-9ukTNWALTWszMDW9HDPF_c9PWhNwjz6A'
+    Authorization: `Bearer ${process.env.TOKEN}`
   }
 };
 let data;
@@ -78,12 +84,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // 카드 정렬 - 추천순, 평점순
 
+// 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
 document.querySelector('.form-select').addEventListener('change', (e) => {
   const optionValue = e.target.value;
   if (optionValue === '1') {
     data.sort((a, b) => b.vote_count - a.vote_count);
   } else if (optionValue === '2') {
     data.sort((a, b) => b.vote_average - a.vote_average);
+    
   }
   while ($movieCardList.firstChild) {
     $movieCardList.removeChild($movieCardList.firstChild);
