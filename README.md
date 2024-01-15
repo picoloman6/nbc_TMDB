@@ -45,7 +45,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 ## 🍿 프로젝트 화면 구성 및 기능
 
 - 메인 페이지
-  <img width="908" alt="" src="https://github.com/picoloman6/nbc_TMDB/assets/148458439/0dfe7f68-964a-4ca1-b7e4-85db79f72685">
+  ![메인](./images/main.png);
 
 <br>
 
@@ -122,7 +122,9 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
          <img width="1021" alt="스크린샷 2024-01-15 오후 12 41 54" src="https://github.com/picoloman6/nbc_TMDB/assets/148458439/229378af-d347-4ebf-8c29-8e9487839af8">
 
 5.  TMDB openAPI 이용하여 상세 페이지 추가사항 가져오기
+
     - 출연진, 장르, 런타임, 개봉일, 제작비, 월드 박스 오피스
+
       <img width="290" alt="스크린샷 2024-01-15 오후 12 39 31 복사본" src="https://github.com/picoloman6/nbc_TMDB/assets/148458439/b803db89-b4e8-445c-a5fc-f61dddcc119f">
 
 <br>
