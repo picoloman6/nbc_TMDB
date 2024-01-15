@@ -96,6 +96,7 @@ button.search-btn:hover {
   transition: all 0.2s ease 0s;
   color: black;
 }
+
 .main-return {
   cursor: pointer;
 }
@@ -111,6 +112,7 @@ button.search-btn:hover {
   transition: 0.1s;
   background-color: black;
   color: white;
+  margin-bottom: 11px;
 }
 
 .search-input::placeholder {
@@ -123,17 +125,10 @@ button.search-btn:hover {
   box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
 }
 
-/* 추천순, 평점순 버튼 */
-.sort {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-}
-
-.sort button {
-  margin-left: 10px;
-  background-color: gray;
-  color: white;
+.search-err {
+  color: red;
+  margin-left: 19px;
+  font-weight: bold;
 }
 
 /* 정렬 selector */
@@ -146,4 +141,10 @@ button.search-btn:hover {
 .sort-select {
   display: flex;
   justify-content: flex-end;
+}
+
+/* 페이지 이동 연습용 */
+.test {
+  display: flex;
+  justify-content: center;
 }
