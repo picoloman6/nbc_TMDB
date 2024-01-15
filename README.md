@@ -1,14 +1,15 @@
 # MOVIE BOX (Javascript Project)
 
-바닐라 자바스크립트\_영화 검색 사이트
+- 바닐라 자바스크립트\_영화 검색 사이트
+- 주소 : https://picoloman6.github.io/nbc_TMDB
 
-<br>
+<br/>
 
 ## 🖥️ 프로젝트 소개
 
 TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
-<br>
+<br/>
 
 ## 🕰️ 개발 기간
 
@@ -22,6 +23,8 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
   - 상세정보화면 API 데이터 불러오기 및 렌더링
   - localStorage를 활용한 댓글 CRUD
   - webpack 및 babel 적용
+  - github pages 배포
+  - 검색 및 댓글 유효성 검사 적용(throttle)
 
 - 팀원1 : 곽인해
 
@@ -40,13 +43,14 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 ### ⚙️ 개발 환경
 
-- `Vanilla javascript`, HTML5, CSS3
+- `Vanilla javascript`, `HTML5`, `CSS3`
+- **라이브러리** : dotenv
 - **Framework** : Bootstrap(5.3.2)
 - **Database** : Local Storage
 - **environment** : Visual Studio Code, git, github
 - **communication** : figma, slack, notion, zep
 
-<br>
+<br/>
 
 ## 🍿 프로젝트 화면 구성 및 기능
 
@@ -54,31 +58,31 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
   ![메인](./images/main.png)
 
-<br>
+<br/>
 
 - 영화 상세 페이지
 
   ![상세페이지](./images/detail.png)
 
-<br>
+<br/>
 
 - 영화 카드 정렬
 
   ![메인카드정렬](./images/sorting.png)
 
-<br>
+<br/>
 
 - 한줄평 CRUD(작성, 수정, 삭제)
 
   ![한줄평](./images/comments.png)
 
-<br>
+<br/>
 
 - footer
 
   ![footer](./images/footer.png)
 
-  <br>
+<br/>
 
 ## 📌 주요 기능
 
@@ -86,13 +90,20 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 1. TMDB openAPI 이용
 
+   - top rated API, Credit API, 제목 검색 API, 영화 상세정보 API
+
 2. 영화정보 상세 페이지 구현
+
+   - 제목 검색 API로 영화 검색 기능 구현
 
 3. 영화 리뷰(한줄평) 작성 기능 구현
 
-   - local storage 적재
+   - localStorage를 활용한 리뷰 CRUD 구현
 
 4. github PR(=Pull Request) 사용한 협업
+
+   - 총 39회 PR
+   - main - DEV - feature 브랜치 사용
 
 5. 유효성 검사
 
@@ -140,6 +151,11 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
       ![상세 추가사항](./images/detail-credits.png)
 
+6.  throttle
+
+    - 연속 검색 제한으로 API 요청 감소
+      ![throttle](./images/trottle.gif)
+
 <br>
 
 ## 📝 KPT 회고
@@ -148,7 +164,9 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 - 한빈
 
-  - ㄱㄴㄷ
+  - 프로젝트를 완성하고 배포까지 완료
+  - API 통신에 대한 비동기 코드 깔끔하게 작성
+  - 유효성 검사를 깔끔한 UI로 작성
 
 - 인해
 
@@ -168,7 +186,8 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 - 한빈
 
-  - ㄱㄴㄷ
+  - 라이브러리 import 후 번들 파일 크기 줄이지 못한 것
+  - 파일 하나에 많은 코드를 작성한 것
 
 - 인해
 
@@ -188,7 +207,8 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 - 한빈
 
-  - ㄱㄴㄷ
+  - 남은 기간 동안 번들 파일 크기 최적화 배우기
+  - trottle, debounce 등 최적화 기술 더 많이 사용하기
 
 - 인해
 
