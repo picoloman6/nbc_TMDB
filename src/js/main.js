@@ -132,23 +132,23 @@ document.querySelector('.main-return').addEventListener('click', () => {
 });
 
 // 메인에서 페이지 간 이동 test
-document.querySelector('.testBtn').addEventListener('click', async () => {
-  const testInput = document.querySelector('.testInput').value;
-  console.log(typeof testInput);
-  try {
-    const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${testInput}`;
-    const res = await fetch(url, options).then((response) => response.json());
-    data = res.results;
+// document.querySelector('.testBtn').addEventListener('click', async () => {
+//   const testInput = document.querySelector('.testInput').value;
+//   console.log(typeof testInput);
+//   try {
+//     const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=${testInput}`;
+//     const res = await fetch(url, options).then((response) => response.json());
+//     data = res.results;
 
-    while ($movieCardList.firstChild) {
-      $movieCardList.removeChild($movieCardList.firstChild);
-    }
+//     while ($movieCardList.firstChild) {
+//       $movieCardList.removeChild($movieCardList.firstChild);
+//     }
 
-    data.forEach((movie) => {
-      const card = createMovieCard(movie);
-      $movieCardList.appendChild(card);
-    });
-  } catch (e) {
-    console.log(e);
-  }
-});
+//     data.forEach((movie) => {
+//       const card = createMovieCard(movie);
+//       $movieCardList.appendChild(card);
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
