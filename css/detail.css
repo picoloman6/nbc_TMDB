@@ -13,7 +13,7 @@ h1.headerName {
 }
 
 form {
-  margin: 50px 0 0 10px;
+  margin-top: 50px;
 }
 
 /* header 버튼 */
@@ -276,6 +276,9 @@ button.search-btn:hover {
   border-radius: 5px;
   background-color: rgb(10, 88, 202);
   color: white;
+}
+
+.commentDleBtn {
   margin-right: 5px;
 }
 
