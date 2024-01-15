@@ -1,7 +1,4 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+import { options } from './utils';
 import '../css/reset.css';
 import '../css/main.css';
 
@@ -11,63 +8,10 @@ const $searchBtn = document.querySelector('.search-btn');
 const $movieCardList = document.querySelector('#movieCardList');
 
 // // 전역변수 설정
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${process.env.TOKEN}`
-  }
-};
 let data;
 
-// 영화 정보 카드 DOM 생성
-const createMovieCard = (movie) => {
-  const { id, poster_path, title, overview, vote_average } = movie;
-
-  const $wrapper = document.createElement('li');
-  const $card = document.createElement('div');
-  const $img = document.createElement('img');
-  const $body = document.createElement('div');
-  const $title = document.createElement('h5');
-  const $overview = document.createElement('p');
-  const $average = document.createElement('p');
-
-  $wrapper.classList.add('col-md-3', 'mb-4');
-  $card.className = 'card';
-  $img.className = 'card-img-top';
-  $body.className = 'card-body';
-  $title.className = 'card-title';
-  $overview.className = 'card-text';
-  $average.className = 'card-text2';
-
-  $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-  $img.alt = title;
-
-  $wrapper.onclick = function () {
-    const stringMovie = JSON.stringify(movie);
-    localStorage.setItem('movie', stringMovie);
-    location.href = `./detail.html?id=${id}`;
-  };
-
-  $title.textContent = title;
-  $overview.textContent = overview;
-  $average.textContent = `🍿🍿🍿 : ${vote_average}`;
-
-  $body.appendChild($title);
-  // $body.appendChild($overview);
-  $body.appendChild($average);
-
-  $card.appendChild($img);
-  $card.appendChild($body);
-
-  $wrapper.appendChild($card);
-
-  return $wrapper;
-};
-
-document.addEventListener('DOMContentLoaded', async () => {
-  $searchInput.focus();
-
+// 영화정보 불러오기
+const getMovieInfo = async () => {
   try {
     const url = `https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1`;
     const res = await fetch(url, options).then((response) => response.json());
@@ -80,9 +24,53 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {
     console.log(e);
   }
-});
+};
 
-// 카드 정렬 - 추천순, 평점순
+// 영화 정보 카드 DOM 생성
+const createMovieCard = (movie) => {
+  const { id, poster_path, title, vote_average } = movie;
+
+  const $wrapper = document.createElement('li');
+  const $card = document.createElement('div');
+  const $img = document.createElement('img');
+  const $body = document.createElement('div');
+  const $title = document.createElement('h5');
+  const $average = document.createElement('p');
+
+  $wrapper.classList.add('col-md-3', 'mb-4');
+  $card.className = 'card';
+  $img.className = 'card-img-top';
+  $body.className = 'card-body';
+  $title.className = 'card-title';
+  $average.className = 'card-text2';
+
+  $img.src = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  $img.alt = title;
+
+  $wrapper.onclick = function () {
+    const stringMovie = JSON.stringify(movie);
+    localStorage.setItem('movie', stringMovie);
+    location.href = `./detail.html?id=${id}`;
+  };
+
+  $title.textContent = title;
+  $average.textContent = `🍿🍿🍿 : ${vote_average}`;
+
+  $body.appendChild($title);
+  $body.appendChild($average);
+
+  $card.appendChild($img);
+  $card.appendChild($body);
+
+  $wrapper.appendChild($card);
+
+  return $wrapper;
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+  $searchInput.focus();
+  await getMovieInfo();
+});
 
 // 추천순 버튼에 클릭 이벤트 - 기존 카드는 지우고, 새로운 정렬 카드로 붙이기
 document.querySelector('.form-select').addEventListener('change', (e) => {
@@ -103,7 +91,6 @@ document.querySelector('.form-select').addEventListener('change', (e) => {
 });
 
 // 영화 이름 검색
-
 $searchBtn.addEventListener('click', async (e) => {
   const keyword = $searchInput.value;
 
@@ -140,9 +127,9 @@ $searchBtn.addEventListener('click', async (e) => {
 });
 
 // 메인페이지로 이동
-document.querySelector('.main-return').onclick = function () {
+document.querySelector('.main-return').addEventListener('click', () => {
   window.location.href = './index.html';
-};
+});
 
 // 메인에서 페이지 간 이동 test
 document.querySelector('.testBtn').addEventListener('click', async () => {

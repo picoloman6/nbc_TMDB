@@ -8,8 +8,10 @@ header {
   padding: 3rem !important;
 }
 
-h1.headerName {
-  padding-left: 130px;
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
