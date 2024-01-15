@@ -138,10 +138,11 @@ $searchBtn.addEventListener('click', async (e) => {
   timer = 5;
 
   const interval = setInterval(() => {
-    if (timer === 0) {
-      clearInterval = interval;
-    }
     timer--;
+    if (timer <= 0) {
+      clearInterval(interval);
+      timer = 0;
+    }
   }, 1000);
 
   await searchMovies();

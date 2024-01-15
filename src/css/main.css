@@ -144,7 +144,16 @@ button.search-btn:hover {
 }
 
 /* 페이지 이동 연습용 */
-.test {
+/* .test {
   display: flex;
   justify-content: center;
+} */
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.number-button {
+  margin: auto 10px auto 10px;
 }
