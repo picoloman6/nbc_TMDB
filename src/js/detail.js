@@ -8,6 +8,7 @@ const $commentPw = document.querySelector('.comment-pw');
 const $commentBox = document.querySelector('.commentBox');
 const $commentBoxBtn = document.querySelector('.commentBtn');
 const $commentContainer = document.querySelector('.commentContainer');
+const $commentErr = document.querySelector('.movie-comment-err');
 
 // 변수
 let movieId = 0;
@@ -213,7 +214,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
   e.preventDefault();
 
   if (name === '' && pw === '' && comment === '') {
-    alert('값을 입력하세요');
+    $commentErr.textContent = '값을 입력하세요';
     return;
   }
 
@@ -226,6 +227,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     $commentBoxBtn.textContent = '등록';
   }
 
+  $commentErr.textContent = '';
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
@@ -251,7 +253,7 @@ $commentContainer.addEventListener('click', (e) => {
     const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
 
     if (input.value !== comment.password) {
-      alert('비밀번호가 일치하지 않습니다.');
+      $commentErr.textContent = '비밀번호가 일치하지 않습니다.';
       return;
     }
 
@@ -277,6 +279,8 @@ $commentContainer.addEventListener('click', (e) => {
       writeMod = 'update';
       updateCommentId = dataset.commentId;
     }
+
+    $commentErr.textContent = '';
   }
 });
 
