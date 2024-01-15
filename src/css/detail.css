@@ -180,6 +180,11 @@ button.search-btn:hover {
   font-size: 15px;
 }
 
+.movie-comment-err {
+  margin-left: 142px;
+  color: red;
+}
+
 .formContainer {
   display: flex;
   margin-top: 10px;
