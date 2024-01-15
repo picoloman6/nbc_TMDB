@@ -2,9 +2,12 @@
 
 바닐라 자바스크립트\_영화 검색 사이트
 
+<br>
+
 ## 🖥️ 프로젝트 소개
 
 TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
+
 <br>
 
 ## 🕰️ 개발 기간
@@ -36,6 +39,8 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 - **Database** : Local Storage
 - **environment** : Visual Studio Code, git, github
 - **communication** : figma, slack, notion, zep
+
+<br>
 
 ## 🍿 프로젝트 화면 구성 및 기능
 
