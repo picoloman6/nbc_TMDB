@@ -138,7 +138,6 @@ $searchBtn.addEventListener('click', async (e) => {
   timer = 5;
 
   const interval = setInterval(() => {
-    console.log(timer);
     timer--;
     if (timer <= 0) {
       clearInterval(interval);
