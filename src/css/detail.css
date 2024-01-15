@@ -8,8 +8,10 @@ header {
   padding: 3rem !important;
 }
 
-h1.headerName {
-  padding-left: 130px;
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
@@ -176,6 +178,11 @@ button.search-btn:hover {
 
 .movieCommentName3 {
   font-size: 15px;
+}
+
+.movie-comment-err {
+  margin-left: 142px;
+  color: red;
 }
 
 .formContainer {
