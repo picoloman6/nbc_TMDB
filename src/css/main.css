@@ -96,6 +96,7 @@ button.search-btn:hover {
   transition: all 0.2s ease 0s;
   color: black;
 }
+
 .main-return {
   cursor: pointer;
 }
@@ -111,6 +112,7 @@ button.search-btn:hover {
   transition: 0.1s;
   background-color: black;
   color: white;
+  margin-bottom: 11px;
 }
 
 .search-input::placeholder {
@@ -121,6 +123,12 @@ button.search-btn:hover {
 .search-input:hover {
   border: 1.5px solid hsla(0, 0%, 50%);
   box-shadow: 0 0 0.2rem 0.2rem hsla(0, 0%, 50%, 0.6);
+}
+
+.search-err {
+  color: red;
+  margin-left: 19px;
+  font-weight: bold;
 }
 
 /* 정렬 selector */
