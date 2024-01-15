@@ -138,47 +138,53 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
+// 영화 상세정보 불러오기
 const getMovieDetails = async () => {
-  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
-  const res = await fetch(url, options).then((resoponse) => resoponse.json());
-  const genres = res.genres.map((v) => v.name);
-  const runtime = res.runtime;
-  const budget = res.budget;
-  const revenue = res.revenue;
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
+    const res = await fetch(url, options).then((resoponse) => resoponse.json());
+    const genres = res.genres.map((v) => v.name);
+    const runtime = res.runtime;
+    const budget = res.budget;
+    const revenue = res.revenue;
 
-  return { genres, runtime, budget, revenue };
+    return { genres, runtime, budget, revenue };
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-// 주요 출연진
-const persons = () => {
-  fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`,
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const peopleList = document.getElementById('peopleList');
+// 주요 출연진 불러오기
+const persons = async () => {
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`;
+    const res = await fetch(url, options).then((response) => response.json());
+    const cast = res.cast;
 
-      data.cast.forEach((person) => {
-        if (person.profile_path !== null) {
-          const listItem = document.createElement('li');
-          listItem.className = 'peopleCard';
+    const peopleList = document.getElementById('peopleList');
 
-          const image = document.createElement('img');
-          image.className = 'peopleCard2';
-          image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
-          listItem.appendChild(image);
+    cast.forEach((person) => {
+      if (person.profile_path !== null) {
+        const listItem = document.createElement('li');
+        const image = document.createElement('img');
+        const name = document.createElement('p');
 
-          const name = document.createElement('p');
-          name.className = 'peopleName';
-          name.textContent = person.name;
-          listItem.appendChild(name);
+        listItem.className = 'peopleCard';
 
-          peopleList.appendChild(listItem);
-        }
-      });
-    })
-    .catch((err) => console.error(err));
+        image.className = 'peopleCard2';
+        image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
+        listItem.appendChild(image);
+
+        name.className = 'peopleName';
+        name.textContent = person.name;
+        listItem.appendChild(name);
+
+        peopleList.appendChild(listItem);
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
