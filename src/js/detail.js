@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+import { options } from './utils';
 import '../css/reset.css';
 import '../css/detail.css';
 
@@ -13,19 +14,10 @@ const $commentBoxBtn = document.querySelector('.commentBtn');
 const $commentContainer = document.querySelector('.commentContainer');
 
 // 변수
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${process.env.TOKEN}`
-  }
-};
 let movieId = 0;
 let comments = [];
 let updateCommentId = 0;
 let writeMod = 'add';
-// let cast;
-// let crew;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (name, password, comment) => {

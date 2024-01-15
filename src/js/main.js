@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+import { options } from './utils';
 import '../css/reset.css';
 import '../css/main.css';
 
@@ -11,13 +12,6 @@ const $searchBtn = document.querySelector('.search-btn');
 const $movieCardList = document.querySelector('#movieCardList');
 
 // // 전역변수 설정
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${process.env.TOKEN}`
-  }
-};
 let data;
 
 // 영화 정보 카드 DOM 생성
