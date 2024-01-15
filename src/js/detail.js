@@ -1,7 +1,4 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+import { options } from './utils';
 import '../css/reset.css';
 import '../css/detail.css';
 
@@ -11,21 +8,13 @@ const $commentPw = document.querySelector('.comment-pw');
 const $commentBox = document.querySelector('.commentBox');
 const $commentBoxBtn = document.querySelector('.commentBtn');
 const $commentContainer = document.querySelector('.commentContainer');
+const $commentErr = document.querySelector('.movie-comment-err');
 
 // 변수
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${process.env.TOKEN}`
-  }
-};
 let movieId = 0;
 let comments = [];
 let updateCommentId = 0;
 let writeMod = 'add';
-// let cast;
-// let crew;
 
 // localStorage에 movieId로 영화 댓글 정보 저장
 const setComment = (name, password, comment) => {
@@ -150,47 +139,53 @@ const renderComment = (commentObj) => {
   $commentContainer.appendChild($li);
 };
 
+// 영화 상세정보 불러오기
 const getMovieDetails = async () => {
-  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
-  const res = await fetch(url, options).then((resoponse) => resoponse.json());
-  const genres = res.genres.map((v) => v.name);
-  const runtime = res.runtime;
-  const budget = res.budget;
-  const revenue = res.revenue;
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
+    const res = await fetch(url, options).then((resoponse) => resoponse.json());
+    const genres = res.genres.map((v) => v.name);
+    const runtime = res.runtime;
+    const budget = res.budget;
+    const revenue = res.revenue;
 
-  return { genres, runtime, budget, revenue };
+    return { genres, runtime, budget, revenue };
+  } catch (e) {
+    console.log(e);
+  }
 };
 
-// 주요 출연진
-const persons = () => {
-  fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`,
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const peopleList = document.getElementById('peopleList');
+// 주요 출연진 불러오기
+const persons = async () => {
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko-KO`;
+    const res = await fetch(url, options).then((response) => response.json());
+    const cast = res.cast;
 
-      data.cast.forEach((person) => {
-        if (person.profile_path !== null) {
-          const listItem = document.createElement('li');
-          listItem.className = 'peopleCard';
+    const peopleList = document.getElementById('peopleList');
 
-          const image = document.createElement('img');
-          image.className = 'peopleCard2';
-          image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
-          listItem.appendChild(image);
+    cast.forEach((person) => {
+      if (person.profile_path !== null) {
+        const listItem = document.createElement('li');
+        const image = document.createElement('img');
+        const name = document.createElement('p');
 
-          const name = document.createElement('p');
-          name.className = 'peopleName';
-          name.textContent = person.name;
-          listItem.appendChild(name);
+        listItem.className = 'peopleCard';
 
-          peopleList.appendChild(listItem);
-        }
-      });
-    })
-    .catch((err) => console.error(err));
+        image.className = 'peopleCard2';
+        image.src = `https://image.tmdb.org/t/p/w185${person.profile_path}`;
+        listItem.appendChild(image);
+
+        name.className = 'peopleName';
+        name.textContent = person.name;
+        listItem.appendChild(name);
+
+        peopleList.appendChild(listItem);
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -218,8 +213,8 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
 
   e.preventDefault();
 
-  if (name === '' && pw === '' && comment === '') {
-    alert('값을 입력하세요');
+  if (name === '' || pw === '' || comment === '') {
+    $commentErr.textContent = '값을 입력하세요';
     return;
   }
 
@@ -232,6 +227,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
     $commentBoxBtn.textContent = '등록';
   }
 
+  $commentErr.textContent = '';
   $commentName.value = '';
   $commentPw.value = '';
   $commentBox.value = '';
@@ -257,7 +253,7 @@ $commentContainer.addEventListener('click', (e) => {
     const input = document.querySelector(`#commentDlePW${dataset.commentId}`);
 
     if (input.value !== comment.password) {
-      alert('비밀번호가 일치하지 않습니다.');
+      $commentErr.textContent = '비밀번호가 일치하지 않습니다.';
       return;
     }
 
@@ -283,6 +279,8 @@ $commentContainer.addEventListener('click', (e) => {
       writeMod = 'update';
       updateCommentId = dataset.commentId;
     }
+
+    $commentErr.textContent = '';
   }
 });
 
@@ -299,18 +297,6 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 });
 
 // 메인페이지로 이동
-document.querySelector('.main-return').onclick = function () {
+document.querySelector('.main-return').addEventListener('click', () => {
   window.location.href = './index.html';
-};
-
-// 상세정보 fetch 테스트 - 인해
-
-// document.addEventListener('DOMContentLoaded', async () => {
-//   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
-//   const res = await fetch(url, options).then(response => response.json())
-//   cast = res.cast;
-//   crew = res.crew;
-//   console.log(res);
-// });
-
-// 출연진 붙이기
+});
