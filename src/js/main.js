@@ -6,9 +6,11 @@ import '../css/main.css';
 const $searchInput = document.querySelector('.search-input');
 const $searchBtn = document.querySelector('.search-btn');
 const $movieCardList = document.querySelector('#movieCardList');
+const $searchErr = document.querySelector('.search-err');
 
 // // 전역변수 설정
 let data;
+let timer;
 
 // 영화정보 불러오기
 const getMovieInfo = async () => {
@@ -21,6 +23,40 @@ const getMovieInfo = async () => {
       const card = createMovieCard(movie);
       $movieCardList.appendChild(card);
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const searchMovies = async () => {
+  const keyword = $searchInput.value;
+
+  if (keyword.length < 2) {
+    $searchErr.textContent = '2글자 이상 입력하세요';
+    return;
+  }
+
+  try {
+    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
+    const res = await fetch(url, options).then((response) => response.json());
+
+    if (res.results.length === 0) {
+      $searchErr.textContent = '검색 결과가 없습니다.';
+    } else {
+      data = res.results;
+
+      while ($movieCardList.firstChild) {
+        $movieCardList.removeChild($movieCardList.firstChild);
+      }
+
+      data.forEach((movie) => {
+        const card = createMovieCard(movie);
+        $movieCardList.appendChild(card);
+      });
+
+      $searchInput.value = '';
+      $searchErr.textContent = '';
+    }
   } catch (e) {
     console.log(e);
   }
@@ -92,40 +128,23 @@ document.querySelector('.form-select').addEventListener('change', (e) => {
 
 // 영화 이름 검색
 $searchBtn.addEventListener('click', async (e) => {
-  const keyword = $searchInput.value;
-  const $searchErr = document.querySelector('.search-err');
-
   e.preventDefault();
 
-  if (keyword.length < 2) {
-    $searchErr.textContent = '2글자 이상 입력하세요';
+  if (timer > 0) {
+    $searchErr.textContent = `${timer}초 후 다시 입력하세요`;
     return;
   }
 
-  try {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-KR&page=1`;
-    const res = await fetch(url, options).then((response) => response.json());
+  timer = 5;
 
-    if (res.results.length === 0) {
-      $searchErr.textContent = '검색 결과가 없습니다.';
-    } else {
-      data = res.results;
-
-      while ($movieCardList.firstChild) {
-        $movieCardList.removeChild($movieCardList.firstChild);
-      }
-
-      data.forEach((movie) => {
-        const card = createMovieCard(movie);
-        $movieCardList.appendChild(card);
-      });
-
-      $searchInput.value = '';
-      $searchErr.textContent = '';
+  const interval = setInterval(() => {
+    if (timer === 0) {
+      clearInterval = interval;
     }
-  } catch (e) {
-    console.log(e);
-  }
+    timer--;
+  }, 1000);
+
+  await searchMovies();
 });
 
 // 메인페이지로 이동
