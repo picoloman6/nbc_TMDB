@@ -22,6 +22,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
   - 상세정보화면 API 데이터 불러오기 및 렌더링
   - localStorage를 활용한 댓글 CRUD
   - webpack 및 babel 적용
+  - github pages 배포
   - 검색 및 댓글 유효성 검사 적용(throttle)
 - 팀원1 : 곽인해
   - 메인페이지의 영화 카드 추천순/ 평점순 정렬
@@ -139,7 +140,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 6.  throttle
 
-    - 연속적인 검색 제한으로 API 요청 감소
+    - 연속 검색 제한으로 API 요청 감소
       ![throttle](./images/trottle.gif)
 
 <br>
@@ -194,7 +195,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 - 한빈
 
   - 남은 기간 동안 번들 파일 크기 최적화 배우기
-  - trottle, debounce 더 많이 사용하기
+  - trottle, debounce 등 최적화 기술 더 많이 사용하기
 
 - 인해
 
