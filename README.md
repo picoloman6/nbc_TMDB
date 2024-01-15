@@ -44,7 +44,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 ### ⚙️ 개발 환경
 
 - `Vanilla javascript`, `HTML5`, `CSS3`
-- **라이브러리** : webpack, babel, dotenv
+- **기술스택** : webpack, babel, dotenv
 - **Framework** : Bootstrap(5.3.2)
 - **Database** : Local Storage
 - **environment** : Visual Studio Code, git, github
@@ -66,9 +66,15 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 <br/>
 
+- 영화 검색
+
+  ![영화검색](./images/search.gif)
+
+<br/>
+
 - 영화 카드 정렬
 
-  ![메인카드정렬](./images/sorting.png)
+  ![메인카드정렬](./images/sorting2.gif)
 
 <br/>
 
@@ -94,7 +100,7 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 
 2. 영화정보 상세 페이지 구현
 
-   - 제목 검색 API로 영화 검색 기능 구현
+   - Credit API,영화 상세정보 API로 상세 페이지 콘텐츠 구현
 
 3. 영화 리뷰(한줄평) 작성 기능 구현
 
@@ -108,7 +114,6 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
 5. 유효성 검사
 
    - 한줄평 작성 시
-
    - 메인화면 영화 검색 시
 
 6. 순수 `vanilla javascript` 사용
@@ -122,6 +127,8 @@ TMDB openAPI를 이용하여 만든 영화 검색 사이트입니다.
     - flex, 반응형 구현
 
 2.  상세페이지 한줄평 수정 및 삭제
+
+- Local Storage를 활용한 리뷰 CRUD 구현
 
 3.  유효성 검사 - alert이 아닌 input칸 상단/하단에 표시
 
