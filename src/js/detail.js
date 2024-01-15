@@ -213,7 +213,7 @@ document.querySelector('.commentBtn').addEventListener('click', (e) => {
 
   e.preventDefault();
 
-  if (name === '' && pw === '' && comment === '') {
+  if (name === '' || pw === '' || comment === '') {
     $commentErr.textContent = '값을 입력하세요';
     return;
   }
