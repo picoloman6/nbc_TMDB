@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 import { options } from './utils';
 import '../css/reset.css';
 import '../css/detail.css';
