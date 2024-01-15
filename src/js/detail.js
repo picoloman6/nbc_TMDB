@@ -293,6 +293,6 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 });
 
 // 메인페이지로 이동
-document.querySelector('.main-return').onclick = function () {
+document.querySelector('.main-return').addEventListener('click', () => {
   window.location.href = './index.html';
-};
+});

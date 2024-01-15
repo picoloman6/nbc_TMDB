@@ -127,9 +127,9 @@ $searchBtn.addEventListener('click', async (e) => {
 });
 
 // 메인페이지로 이동
-document.querySelector('.main-return').onclick = function () {
+document.querySelector('.main-return').addEventListener('click', () => {
   window.location.href = './index.html';
-};
+});
 
 // 메인에서 페이지 간 이동 test
 document.querySelector('.testBtn').addEventListener('click', async () => {
