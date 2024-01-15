@@ -290,15 +290,3 @@ document.querySelector('.comment-cancel').addEventListener('click', (e) => {
 document.querySelector('.main-return').onclick = function () {
   window.location.href = './index.html';
 };
-
-// 상세정보 fetch 테스트 - 인해
-
-// document.addEventListener('DOMContentLoaded', async () => {
-//   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
-//   const res = await fetch(url, options).then(response => response.json())
-//   cast = res.cast;
-//   crew = res.crew;
-//   console.log(res);
-// });
-
-// 출연진 붙이기

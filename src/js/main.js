@@ -93,7 +93,6 @@ document.querySelector('.form-select').addEventListener('change', (e) => {
 });
 
 // 영화 이름 검색
-
 $searchBtn.addEventListener('click', async (e) => {
   const keyword = $searchInput.value;
 
