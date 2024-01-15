@@ -25,7 +25,6 @@
             <img src="https://i.ibb.co/JjBNH69/Group-7.png" alt="Group2" />
           </div>
         </h1>
-
         <form role="search">
           <input
             type="search"
@@ -36,51 +35,25 @@
         </form>
       </div>
     </header>
-
-    <!-- 영화소개 -->
-    <section class="movieContainer">
-      <div class="movieDetail">
-        <img class="movieImage" />
-        <div class="movieDetailDetail">
-          <h3 class="movieTitle"></h3>
-          <p class="movieTitle2"></p>
-          <p class="movieGenre"></p>
-          <p class="movieTime"></p>
-          <p class="movieOpen"></p>
-          <p class="movieVote"></p>
-          <p class="movieBudget"></p>
-          <p class="movieRevenue"></p>
-        </div>
+    <!-- 영화 리스트 -->
+    <div class="container">
+      <div class="sort-select">
+        <select class="form-select" id="floatingSelect">
+          <option selected>선택</option>
+          <option class="sortBtn-count" value="1">추천순</option>
+          <option class="sortBtn-average" value="2">평점순</option>
+        </select>
       </div>
-      <div class="moviePlot">
-        <p>대충영화소개</p>
-      </div>
-      <div>
-        <p class="people">주요 출연진</p>
-        <ol class="peopleCards" id="peopleList"></ol>
-      </div>
-    </section>
-
-    <!-- 댓글창 -->
-    <section class="movieCommentContainer">
-      <div class="movieCommentName">
-        <h2 class="movieCommentName2">한줄평</h2>
-        <p class="movieCommentName3">(0)</p>
-      </div>
-      <form class="formContainer">
-        <input type="text" class="comment-name" placeholder="이름" />
-        <input type="password" class="comment-pw" placeholder="비밀번호" />
-        <input
-          type="text"
-          class="commentBox"
-          placeholder="내용을 작성해 주세요."
-        />
-        <button class="commentBtn">등록</button>
-        <button class="comment-cancel">취소</button>
-      </form>
-      <ul class="commentContainer"></ul>
-    </section>
-
+      <ul class="row" id="movieCardList"></ul>
+    </div>
+<<<<<<< HEAD:html/main.html
+=======
+    <!-- 페이지 이동 연습용 input, button -->
+    <!-- <div class="test">
+      <input class="testInput" />
+      <button class="testBtn" type="button">검색</button>
+    </div> -->
+>>>>>>> 2a99876b24dfa32c56e55e2f3eb999558864f675:src/html/main.html
     <!-- 푸터 -->
     <footer>
       <div class="container-footer">

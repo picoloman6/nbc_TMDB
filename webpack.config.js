@@ -5,10 +5,10 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
-    main: './js/main.js',
-    detail: './js/detail.js'
+    main: './src/js/main.js',
+    detail: './src/js/detail.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -42,12 +42,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './html/main.html',
+      template: './src/html/main.html',
       chunks: ['main']
     }),
     new HtmlWebpackPlugin({
       filename: 'detail.html',
-      template: './html/detail.html',
+      template: './src/html/detail.html',
       chunks: ['detail']
     }),
     new MiniCssExtractPlugin()
